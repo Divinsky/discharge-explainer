@@ -64,11 +64,11 @@ async function boardSummary(env) {
 var LEADERSHIP_HTML = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Leadership summary - Patient feedback</title>
 <style>body{font-family:system-ui,sans-serif;max-width:900px;margin:0 auto;padding:16px;line-height:1.5}.demo{background:#eef4ff;border:1px solid #6b8fd6;padding:8px;border-radius:8px}.cards{display:flex;gap:12px;flex-wrap:wrap}.card{border:1px solid #ddd;border-radius:8px;padding:10px 16px;min-width:150px}.big{font-size:2rem;font-weight:700}button{font-size:1rem;padding:8px 14px;background:#76b900;color:#fff;border:none;border-radius:6px;cursor:pointer}#sum{white-space:pre-wrap;border:1px solid #ddd;border-radius:8px;padding:12px;margin-top:10px}td,th{border:1px solid #ccc;padding:5px}table{border-collapse:collapse}</style></head><body>
 <p><a href="/">&larr; Back to explainer</a></p><h1>Leadership summary: patient feedback</h1>
-<p class="demo"><b>Demo data.</b> Includes synthetic seeded entries marked [DEMO DATA]. No personal or health information is collected.</p>
+<p class="demo"><b>Demo data.</b> Includes synthetic seeded entries marked [DEMO DATA]. Submitted ratings, flagged sections, and comments are stored in Cloudflare KV and displayed on this public demo page. Do not include names or health details in feedback.</p>
 <div class="cards"><div class="card">Average clarity<div class="big" id="avg">-</div>out of 5</div><div class="card">Responses<div class="big" id="cnt">-</div></div></div>
 <h2>Most-flagged sections</h2><table id="flags"></table>
 <h2>Recent comments</h2><ul id="recent"></ul>
-<h2>Board briefing</h2><button onclick="gen()">Generate board summary</button> <span id="st"></span><div id="sum">Click the button to have NVIDIA Nemotron (via Nebius Token Factory) write a plain-language briefing.</div>
+<h2>Board briefing</h2><button onclick="gen()">Generate board summary</button> <span id="st"></span><div id="sum">Click the button to have NVIDIA Nemotron 3 Super, served through Nebius Token Factory, write a plain-language briefing from submitted feedback. NVIDIA provides the model; Nebius provides the inference API.</div>
 <script>
 const e=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 fetch("/api/feedback/summary").then(r=>r.json()).then(d=>{avg.textContent=d.average;cnt.textContent=d.count;

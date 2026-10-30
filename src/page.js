@@ -23,7 +23,8 @@ section{border:1px solid #ddd;border-radius:8px;padding:10px 14px;margin:12px 0}
 footer{color:#666;font-size:.85rem;margin-top:24px}
 </style></head><body>
 <h1>Discharge Instructions Explainer</h1>
-<p class="tag">Paste hospital discharge papers. Get plain-language steps, a medicine schedule, warning signs, and questions for your follow-up visit. Powered by NVIDIA Nemotron on Nebius Token Factory.</p>
+<p class="tag">Paste hospital discharge papers. Get plain-language steps, a medicine schedule, warning signs, and questions for your follow-up visit. Powered by <b>NVIDIA Nemotron 3 Super</b>, served through <b>Nebius Token Factory</b>.</p>
+<p><small>NVIDIA provides the language model. Nebius provides the inference API for live explanations and leadership briefings.</small></p>
 <p class="disc"><b>Not medical advice.</b> This tool only rewrites your papers in simpler words and can make mistakes. Always follow your doctor's and pharmacist's instructions. <b>In an emergency, call 911.</b> Do not paste real names or ID numbers.</p>
 <button onclick="s(1)">Load sample: heart failure</button><button onclick="s(2)">Load sample: gallbladder surgery</button>
 <p><small>Built-in samples use prepared, edited examples for instant language demos. Custom text is generated and checked live.</small></p>
@@ -31,12 +32,12 @@ footer{color:#666;font-size:.85rem;margin-top:24px}
 <label for="lang">Also translate to:</label> <select id="lang" onchange="changeLanguage()"><option value="">English only</option><option value="es">Spanish (Español)</option><option value="zh">Mandarin (简体中文)</option><option value="ar">Arabic (العربية)</option><option value="ru">Russian (Русский)</option></select><br>
 <button id="go" onclick="explainPapers()">Explain my discharge papers</button> <span id="st" role="status" aria-live="polite"></span>
 <div id="out" aria-live="polite"></div>
-<section id=fb style="display:none;background:#f4fbe8"><h2>How clear was this?</h2><p><small>Don't include names or health details.</small></p>
+<section id=fb style="display:none;background:#f4fbe8"><h2>How clear was this?</h2><p><small>Ratings, flagged sections, and comments are saved in Cloudflare KV and may appear on the public demo leadership page. Don't include names or health details.</small></p>
 <div id=stars>${[1,2,3,4,5].map(n=>`<label><input type=radio name=r value=${n}> ${"★".repeat(n)}</label> `).join("")}</div>
 <p>Anything confusing? ${["summary","steps","medications","warning signs","questions","translation"].map(s=>`<label><input type=checkbox name=sec value="${s}"> ${s}</label> `).join("")}</p>
 <textarea id=fc maxlength=300 style="min-height:60px" placeholder="Optional comment (no names or health details)"></textarea>
 <button id=send-feedback onclick=sendfb()>Submit feedback</button> <span id=fbs role=status></span> <a href="/leadership">Leadership summary &rarr;</a></section>
-<footer><a href="/leadership">Leadership summary (demo)</a> · Built-in examples use synthetic data. Custom text is sent to Nebius for processing. Feedback is saved for the leadership summary. Open source (MIT).</footer>
+<footer><a href="/leadership">Leadership summary (demo)</a> · Built-in examples use synthetic data. The app does not deliberately save discharge text. Custom text is sent to Nebius for processing; provider retention is separate. Optional feedback is stored in Cloudflare KV for the public demo leadership page. Open source (MIT).</footer>
 <script>
 const S={1:${JSON.stringify(SAMPLE1)},2:${JSON.stringify(SAMPLE2)}};
 function s(n){t.value=S[n]}
