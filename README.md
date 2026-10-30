@@ -38,5 +38,9 @@ npm run deploy
 ```
 Get a key at https://tokenfactory.nebius.com (hackathon promo credits available). `GET /api/health` reports the model and whether a key is configured.
 
+## Roadmap
+- Read-aloud, more languages, photo/PDF upload, printable medication sheet
+- Patient feedback loop: patients rate clarity and flag confusing parts; summaries go to hospital leadership
+
 ## License
 MIT — see [LICENSE](LICENSE).

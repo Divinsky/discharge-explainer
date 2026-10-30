@@ -42,6 +42,7 @@ Open models like Nemotron, served through an OpenAI-compatible API, make it triv
 - Read-aloud (text-to-speech) and more languages
 - Upload a photo/PDF of discharge papers (vision model OCR)
 - Printable one-page "fridge sheet" and calendar/reminder export for medications
+- Patient feedback loop: after using the app, patients and families rate how clear their instructions were and flag confusing parts, and the tool rolls this up into a short summary for hospital leadership and board members, so the voice of the customer reaches the people who set priorities
 - Evaluation against readability scores and clinician review; pilot with a health system's patient-education team
 
 ## Built with
