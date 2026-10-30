@@ -1,7 +1,7 @@
 # Devpost Submission
 
 **Title:** Discharge Instructions Explainer
-**Tagline:** Turn confusing hospital discharge papers into clear steps, a medicine schedule, and warning signs — in plain English or Spanish, powered by NVIDIA Nemotron on Nebius.
+**Tagline:** Turn confusing hospital discharge papers into clear steps, a medicine schedule, and warning signs — in plain English, Spanish, Mandarin, Arabic, or Russian, powered by NVIDIA Nemotron on Nebius.
 **Track:** Best Apps and Agents
 **Live demo:** https://discharge-explainer.irina-divinsky.workers.dev
 **Repo:** https://github.com/Divinsky/discharge-explainer
@@ -15,7 +15,7 @@ Paste discharge papers and get:
 - A medication schedule table (name, dose, when, what it's for, notes)
 - Red-flag warning signs split into "Call 911" vs. "Call your doctor"
 - Questions to ask at the follow-up visit
-- Optional Spanish translation
+- Optional translation via a language dropdown: Spanish, Mandarin (Simplified Chinese), Arabic (right-to-left), or Russian
 Two synthetic sample discharges (heart failure, gallbladder surgery) are built in. A prominent "not medical advice" disclaimer is always shown. The app has no database and does not deliberately persist input; text is sent to Nebius, whose retention practices are separate.
 
 ## How we built it
@@ -32,7 +32,7 @@ Two synthetic sample discharges (heart failure, gallbladder surgery) are built i
 
 ## Accomplishments that we're proud of
 - An end-to-end, deployable app built in hours with a tiny, auditable codebase.
-- Bilingual output for one of the largest underserved patient groups in the US.
+- Multilingual output (Spanish, Mandarin, Arabic RTL, Russian) for patients with limited English proficiency.
 - Stateless app with no database and synthetic-only built-in samples; input is processed by Nebius.
 
 ## Results
@@ -59,7 +59,7 @@ NVIDIA Nemotron 3 Super, Nebius Token Factory, Cloudflare Workers, Wrangler, Jav
 ## Demo video script (< 3 minutes)
 **0:00–0:20 — Problem.** "Patients leave the hospital with papers like this." Show the synthetic heart-failure discharge text. "Jargon like 'PO BID' and '2 g sodium diet' is hard to follow, and misunderstandings lead to readmissions."
 **0:20–0:40 — App intro.** Show the live URL. Point out the not-medical-advice banner and the sample buttons.
-**0:40–1:30 — Demo 1.** Click "Load sample: heart failure", tick Spanish, click Explain. Walk through the plain summary, numbered steps, medication table (furosemide twice a day, etc.), red "Call 911 / Call your doctor" box (weight gain >2 lb), follow-up questions, then the Spanish section.
+**0:40–1:30 — Demo 1.** Click "Load sample: heart failure", select Spanish, click Explain. Walk through the summary, steps, medication table, separate 911/doctor warnings, and Spanish section. Mention Mandarin, Arabic (right-to-left), and Russian. To show another language, select it and click Explain again.
 **1:30–2:00 — Demo 2.** Load the gallbladder surgery sample; highlight pain-med schedule, "no driving on oxycodone", and fever warning.
 **2:00–2:40 — How it's built.** Show the Worker code: `/api/explain` calls Nebius Token Factory's OpenAI-compatible endpoint with model `nvidia/nemotron-3-super-120b-a12b`, JSON-mode output, key stored as a Cloudflare secret. Show `/api/health` and the architecture diagram in the README.
 **2:40–3:00 — Close.** "Open source under MIT, no app database, built with NVIDIA Nemotron on Nebius. Next: photo upload, read-aloud, more languages."

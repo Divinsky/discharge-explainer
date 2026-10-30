@@ -1,0 +1,464 @@
+{
+  "zh": {
+    "latency_ms": 19342,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "result": {
+      "summary": "Patient was hospitalized for worsening heart failure and is now discharged. Continue taking prescribed medicines, follow a low‑salt diet, limit fluids, weigh yourself each morning, and watch for rapid weight gain or warning signs such as chest pain, shortness of breath at rest, or fainting. Follow up with cardiology in one week and have a blood test in one week.",
+      "steps": [
+        "Take all medicines exactly as directed.",
+        "Limit sodium intake to less than 2 grams per day.",
+        "Restrict fluids to 1.5 liters per day.",
+        "Weigh yourself each morning after urinating and before eating; write down the number.",
+        "If you gain more than 2 pounds in one day or more than 5 pounds in one week, call your doctor.",
+        "Have a blood test (BMP) in one week.",
+        "See cardiology (Dr. Sample) in seven days.",
+        "Go to the emergency department right away for chest pain, shortness of breath at rest, or fainting."
+      ],
+      "medications": [
+        {
+          "name": "Furosemide",
+          "dose": "40 mg",
+          "when": "PO BID",
+          "purpose": "Remove excess fluid",
+          "notes": "Take with food if stomach upset."
+        },
+        {
+          "name": "Metoprolol succinate",
+          "dose": "25 mg",
+          "when": "PO daily",
+          "purpose": "Slow heart rate and protect the heart",
+          "notes": "Do not stop suddenly."
+        },
+        {
+          "name": "Lisinopril",
+          "dose": "5 mg",
+          "when": "PO daily",
+          "purpose": "Lower blood pressure and help heart function",
+          "notes": "May cause a dry cough."
+        },
+        {
+          "name": "Spironolactone",
+          "dose": "12.5 mg",
+          "when": "PO daily",
+          "purpose": "Help keep potassium and reduce fluid",
+          "notes": "Your potassium level will be checked."
+        },
+        {
+          "name": "Potassium chloride",
+          "dose": "20 mEq",
+          "when": "PO daily",
+          "purpose": "Replace potassium lost by diuretics",
+          "notes": "Take with food to avoid stomach irritation."
+        },
+        {
+          "name": "Aspirin",
+          "dose": "81 mg",
+          "when": "PO daily",
+          "purpose": "Help prevent blood clots",
+          "notes": "Take with food."
+        },
+        {
+          "name": "Ibuprofen/NSAIDs",
+          "dose": "HOLD",
+          "when": "—",
+          "purpose": "Avoid worsening heart failure",
+          "notes": "Ask your care team before using any NSAID."
+        }
+      ],
+      "red_flags": {
+        "call_911": [
+          "Chest pain",
+          "Severe shortness of breath at rest",
+          "Fainting or syncope",
+          "Sudden severe swelling",
+          "Difficulty breathing"
+        ],
+        "call_doctor": [
+          "Weight gain >2 lb in one day or >5 lb in one week",
+          "Increased leg swelling",
+          "Persistent cough",
+          "Feeling dizzy or light‑headed",
+          "Unusual fatigue",
+          "Any new or worsening medication side effects"
+        ]
+      },
+      "questions": [
+        "What is my target weight?",
+        "How often should I check my weight?",
+        "Which symptoms mean my heart failure is getting worse?",
+        "If I gain weight, how should I adjust my diuretic?",
+        "Are there any interactions between my medicines?",
+        "When should I repeat my blood tests?"
+      ],
+      "translation": {
+        "language": "zh",
+        "summary": "您因心力衰竭住院治疗后出院。请按医嘱服药，控制盐分和液体摄入，每天早上称体重并记录，若体重增长超过规定值或出现胸痛、休息时气短、昏厥等情况应及时就医，并按约定复查和随访。",
+        "steps": [
+          "按时服用所有处方药。",
+          "每天钠摄入不超过2克。",
+          "每日液体限制在1.5升。",
+          "每早晨空腹称重并写下来。",
+          "如果一天内体重增加超过2磅或一周内超过5磅，请致电医生。",
+          "一周后做血液检查。",
+          "七天后回诊心脏科（Sample医生）。",
+          "出现胸痛、休息时气短或昏厥时立即去急诊。"
+        ],
+        "red_flags": [
+          "胸痛",
+          "休息时气短",
+          "昏厥",
+          "体重一天增超过2磅或一周增超过5磅",
+          "腿部明显肿胀",
+          "持续咳嗽",
+          "头晕或感到异常疲劳",
+          "服药后出现不适"
+        ],
+        "questions": [
+          "我的目标体重是多少？",
+          "我应该多久检查一次体重？",
+          "哪些症状表示心力衰竭加重？",
+          "如果出现体重增加该如何调整利尿剂？",
+          "这些药物之间有什么相互作用吗？",
+          "何时需要复查血液检验？"
+        ]
+      }
+    }
+  },
+  "es": {
+    "latency_ms": 20153,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "result": {
+      "summary": "Jane was treated in the hospital for worsening heart failure and is now going home. She will take several medicines to help her heart work better and prevent fluid buildup, and she needs to follow a low‑salt diet, limit fluids, weigh herself daily, and keep her follow‑up appointments.",
+      "steps": [
+        "Take each medication exactly as prescribed (see medication list).",
+        "Eat no more than 2 grams of salt per day.",
+        "Limit drinks to no more than 1.5 liters (about 6 cups) per day.",
+        "Weigh yourself every morning after using the bathroom and before eating; write down the number.",
+        "If your weight goes up more than 2 pounds in one day or more than 5 pounds in one week, call your cardiology team.",
+        "Get a blood test (BMP) in about one week as directed.",
+        "Keep your cardiology appointment with Dr. Sample in 7 days.",
+        "Avoid ibuprofen, naproxen, and other NSAIDs unless your doctor says otherwise.",
+        "Go to the nearest emergency department right away if you have chest pain, shortness of breath while resting, or you faint."
+      ],
+      "medications": [
+        {
+          "name": "Furosemide",
+          "dose": "40 mg",
+          "when": "twice daily (BID)",
+          "purpose": "Remove excess fluid (diuretic)",
+          "notes": "May lower potassium; watch for dehydration."
+        },
+        {
+          "name": "Metoprolol succinate",
+          "dose": "25 mg",
+          "when": "once daily",
+          "purpose": "Slow heart rate and reduce workload",
+          "notes": "Can cause fatigue or low blood pressure."
+        },
+        {
+          "name": "Lisinopril",
+          "dose": "5 mg",
+          "when": "once daily",
+          "purpose": "Lower blood pressure and protect the heart",
+          "notes": "May cause cough or raise potassium."
+        },
+        {
+          "name": "Spironolactone",
+          "dose": "12.5 mg",
+          "when": "once daily",
+          "purpose": "Potassium‑sparing diuretic to reduce fluid",
+          "notes": "Check potassium levels regularly."
+        },
+        {
+          "name": "Potassium chloride",
+          "dose": "20 mEq",
+          "when": "once daily",
+          "purpose": "Replace potassium lost by diuretics",
+          "notes": "Take with food to avoid stomach upset."
+        },
+        {
+          "name": "Aspirin",
+          "dose": "81 mg",
+          "when": "once daily",
+          "purpose": "Help prevent blood clots",
+          "notes": "May irritate the stomach; take with food."
+        }
+      ],
+      "red_flags": {
+        "call_911": [
+          "Chest pain",
+          "Shortness of breath at rest",
+          "Fainting (syncope)"
+        ],
+        "call_doctor": [
+          "Weight gain of more than 2 pounds in one day",
+          "Weight gain of more than 5 pounds in one week"
+        ]
+      },
+      "questions": [
+        "What should I do if I miss a dose of my medicine?",
+        "Are there any specific foods I should avoid besides salt?",
+        "How much fluid is considered safe for me each day?",
+        "When should I check my blood pressure at home?",
+        "Who do I call if I have questions about my medicines?"
+      ],
+      "translation": {
+        "language": "Spanish",
+        "summary": "Jane fue tratada en el hospital por un empeoramiento de su insuficiencia cardíaca y ahora puede ir a casa. Tomará varios medicamentos para ayudar a su corazón y evitar que se acumule líquido, y debe seguir una dieta baja en sal, limitar las bebidas, pesarse todos los días y acudir a sus citas de seguimiento.",
+        "steps": [
+          "Tome cada medicamento exactamente como le indicaron (ver lista de medicamentos).",
+          "No coma más de 2 gramos de sal al día.",
+          "Limite las bebidas a no más de 1.5 litros (unos 6 vasos) al día.",
+          "Párese cada mañana después de ir al baño y antes de comer, púese en la balanza y anote el peso.",
+          "Si sube más de 2 libras en un día o más de 5 libras en una semana, llame a su equipo de cardiología.",
+          "Háganse un análisis de sangre (BMP) en aproximadamente una semana como le indicaron.",
+          "Mantenga su cita con la cardióloga Dra. Sample dentro de 7 días.",
+          "Evite el ibuprofeno, el naproxeno y otros AINES a menos que su médico lo autorice.",
+          "Acuda inmediatamente al servicio de urgencias si tiene dolor en el pecho, falta de aire mientras está en reposo o se desmaya."
+        ],
+        "red_flags": [
+          "Dolor en el pecho",
+          "Falta de aire en reposo",
+          "Desmayo (síncope)",
+          "Aumento de peso de más de 2 libras en un día",
+          "Aumento de peso de más de 5 libras en una semana"
+        ],
+        "questions": [
+          "¿Qué debo hacer si olvido tomar una dosis de mi medicina?",
+          "¿Hay alimentos específicos que deba evitar además de la sal?",
+          "¿Cuánta líquida se considera segura para mí cada día?",
+          "¿Cuándo debo medir mi presión arterial en casa?",
+          "¿A quién llamo si tengo preguntas sobre mis medicamentos?"
+        ]
+      }
+    }
+  },
+  "ar": {
+    "latency_ms": 23628,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "result": {
+      "summary": "You were in the hospital for heart failure and are now going home with medicines to help your heart work better and remove extra fluid. You need to follow a low‑salt diet, limit fluids, weigh yourself each day, and keep your follow‑up appointments. Call your doctor if you notice rapid weight gain or worsening symptoms, and go to the emergency room for chest pain, trouble breathing at rest, or fainting.",
+      "steps": [
+        "Take furosemide 40 mg by mouth twice a day.",
+        "Take metoprolol succinate 25 mg by mouth once a day.",
+        "Take lisinopril 5 mg by mouth once a day.",
+        "Take spironolactone 12.5 mg by mouth once a day.",
+        "Take potassium chloride 20 mEq by mouth once a day.",
+        "Take aspirin 81 mg by mouth once a day.",
+        "Avoid ibuprofen and other NSAIDs.",
+        "Eat no more than 2 grams of salt each day.",
+        "Limit drinks to 1.5 liters per day.",
+        "Weigh yourself every morning after using the bathroom and before eating; write down the weight.",
+        "Call your doctor if you gain more than 2 pounds in one day or more than 5 pounds in one week.",
+        "Have a blood test (BMP) in about one week.",
+        "See your cardiology doctor (Dr. Sample) in about 7 days.",
+        "Go to the emergency department right away if you have chest pain, shortness of breath while resting, or you faint."
+      ],
+      "medications": [
+        {
+          "name": "Furosemide",
+          "dose": "40 mg",
+          "when": "twice daily",
+          "purpose": "Removes excess fluid",
+          "notes": ""
+        },
+        {
+          "name": "Metoprolol succinate",
+          "dose": "25 mg",
+          "when": "once daily",
+          "purpose": "Helps the heart beat slower and with less workload",
+          "notes": ""
+        },
+        {
+          "name": "Lisinopril",
+          "dose": "5 mg",
+          "when": "once daily",
+          "purpose": "Lowers blood pressure and protects the heart",
+          "notes": ""
+        },
+        {
+          "name": "Spironolactone",
+          "dose": "12.5 mg",
+          "when": "once daily",
+          "purpose": "Removes fluid and protects the heart",
+          "notes": ""
+        },
+        {
+          "name": "Potassium chloride",
+          "dose": "20 mEq",
+          "when": "once daily",
+          "purpose": "Replaces potassium lost from diuretics",
+          "notes": ""
+        },
+        {
+          "name": "Aspirin",
+          "dose": "81 mg",
+          "when": "once daily",
+          "purpose": "Helps prevent blood clots",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [
+          "Chest pain",
+          "Shortness of breath at rest",
+          "Fainting (syncope)"
+        ],
+        "call_doctor": [
+          "Gain more than 2 lb in one day",
+          "Gain more than 5 lb in one week"
+        ]
+      },
+      "questions": [
+        "When should I have my BMP blood test?",
+        "When is my follow‑up appointment with Dr. Sample?",
+        "What is my daily sodium limit?",
+        "What is my daily fluid limit?"
+      ],
+      "translation": {
+        "language": "Arabic",
+        "summary": "كنت في المستشفى بسبب فشل القلب والآن أنت خارج المستشفى مع أدوية تساعد قلبك على العمل بشكل أفضل وتزيل السوائل الزائدة. يجب أن تتبع نظامًا غذائيًا منخفض الملح (غرامين ملح يوميًا)، وتحد من السوائل إلى 1.5 لتر يوميًا، وتزن نفسك كل صباح، وتحافظ على مواعيد المتابعة. اتصل بطبيبك إذا زاد وزنك أكثر من 2 رطل في يوم واحد أو أكثر من 5 رطل في أسبوع واحد، أو إذا تفاقمت الأعراض. اذهب إلى الطوارئ إذا شعرت بألم في الصدر، ضيق تنفس أثناء الراحة، أو إغماء.",
+        "steps": [
+          "خذ فوروسيميد 40 ملغ بالفم مرتين في اليوم.",
+          "خذ ميتوبرولول سكسينات 25 ملغ بالفم مرة واحدة في اليوم.",
+          "خذ ليسينوبريل 5 ملغ بالفم مرة واحدة في اليوم.",
+          "خذ سبيرونولاكتون 12.5 ملغ بالفم مرة واحدة في اليوم.",
+          "خذ كلوريد البوتاسيوم 20 ملي مكافئ بالفم مرة واحدة في اليوم.",
+          "خذ أسبرين 81 ملغ بالفم مرة واحدة في اليوم.",
+          "تجنب إيبوبروفين ومضادات الالتهاب غير الستيروئيدية الأخرى.",
+          "لا تتناول أكثر من غرامين من الملح كل يوم.",
+          "حد من المشروبات إلى 1.5 لتر يوميًا.",
+          "زن نفسك كل صباح بعد استخدام الحمام وقبل الطعام وسجل الوزن.",
+          "اتصل بطبيبك إذا زاد وزنك أكثر من 2 رطل في يوم واحد أو أكثر من 5 رطل في أسبوع واحد.",
+          "اجري فحص دم (BMP) بعد حوالي أسبوع.",
+          "راجع طبيب القلب (دكتور Sample) بعد حوالي 7 أيام.",
+          "اذهب إلى قسم الطوارئ فورًا إذا شعرت بألم في الصدر، ضيق تنفس أثناء الراحة، أو إغماء."
+        ],
+        "red_flags": [
+          "ألم في الصدر",
+          "ضيق تنفس أثناء الراحة",
+          "إغماء",
+          "زيادة الوزن أكثر من 2 رطل في يوم واحد",
+          "زيادة الوزن أكثر من 5 رطل في أسبوع واحد"
+        ],
+        "questions": [
+          "متى يجب أن أجري فحص دم BMP؟",
+          "متى هو موعد المتابعة مع دكتور Sample؟",
+          "ما هو حد الصوديوم اليومي؟",
+          "ما هو حد السوائل اليومي?"
+        ]
+      }
+    }
+  },
+  "ru": {
+    "latency_ms": 28690,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "result": {
+      "summary": "After being treated for heart failure, you will go home on several medicines to help your heart work better and remove extra fluid. You need to follow a low-salt diet, limit fluids, weigh yourself each morning, and watch for warning signs. Keep your follow-up appointment and get a blood test in one week.",
+      "steps": [
+        "Take each medication exactly as prescribed, at the same times each day.",
+        "Weigh yourself every morning after using the bathroom and before eating; write down the weight.",
+        "Limit sodium to no more than 2 grams per day (avoid salty foods, processed snacks, canned soups).",
+        "Limit total fluids to 1.5 liters per day (about 6 cups); count water, coffee, tea, soup, etc.",
+        "Call your doctor if you gain more than 2 pounds in one day or more than 5 pounds in one week.",
+        "Get your blood test (BMP) in about one week as instructed.",
+        "Keep your cardiology appointment in 7 days; bring your medication list and weight log.",
+        "Seek emergency care right away if you have chest pain, shortness of breath while resting, or feel faint/pass out."
+      ],
+      "medications": [
+        {
+          "name": "Furosemide",
+          "dose": "40 mg PO BID",
+          "when": "twice daily",
+          "purpose": "remove excess fluid",
+          "notes": "may cause low potassium; take with food if stomach upset"
+        },
+        {
+          "name": "Metoprolol succinate",
+          "dose": "25 mg PO daily",
+          "when": "once daily",
+          "purpose": "slow heart rate and protect heart",
+          "notes": "do not stop suddenly"
+        },
+        {
+          "name": "Lisinopril",
+          "dose": "5 mg PO daily",
+          "when": "once daily",
+          "purpose": "lower blood pressure and reduce heart strain",
+          "notes": "may cause cough; report swelling of face/lips"
+        },
+        {
+          "name": "Spironolactone",
+          "dose": "12.5 mg PO daily",
+          "when": "once daily",
+          "purpose": "help remove fluid and keep potassium balanced",
+          "notes": "check potassium levels"
+        },
+        {
+          "name": "Potassium chloride",
+          "dose": "20 mEq PO daily",
+          "when": "once daily",
+          "purpose": "replace potassium lost from diuretic",
+          "notes": "take with food to avoid stomach upset"
+        },
+        {
+          "name": "Aspirin",
+          "dose": "81 mg PO daily",
+          "when": "once daily",
+          "purpose": "prevent blood clots",
+          "notes": "take with food if stomach upset"
+        }
+      ],
+      "red_flags": {
+        "call_911": [
+          "chest pain",
+          "shortness of breath at rest",
+          "fainting or loss of consciousness"
+        ],
+        "call_doctor": [
+          "weight gain >2 lb in one day or >5 lb in one week",
+          "increasing shortness of breath with activity",
+          "swollen legs or feet",
+          "persistent cough",
+          "dizziness",
+          "feeling unusually tired",
+          "any new concerning symptoms"
+        ]
+      },
+      "questions": [
+        "What should I do if I miss a dose of any medication?",
+        "Are there any over-the-counter medicines or supplements I should avoid?",
+        "How can I track my daily fluid intake accurately?",
+        "What signs of high potassium should I watch for?",
+        "When should I reschedule my follow-up if I cannot make the appointed time?",
+        "Who do I call if I have questions about my diet or fluid limits?"
+      ],
+      "translation": {
+        "language": "Russian",
+        "summary": "После лечения сердечной недостаточности вы будете принимать несколько препаратов дома, которые помогут вашему сердцу работать лучше и удалять лишнюю жидкость. Нужно соблюдать низкосолевую диету, ограничивать жидкость, взвешиваться каждое утро и следить за признаками ухудшения. Не пропустите приём у кардиолога и сдайте анализ крови через неделю.",
+        "steps": [
+          "Принимайте каждое лекарство точно по назначению, в одно и то же время каждый день.",
+          "Взвешивайтесь каждое утро после посещения туалета и до еды; записывайте вес.",
+          "Ограничьте потребление натрия не более 2 граммов в день (избегайте солёной пищи, полуфабрикатов, консервов).",
+          "Ограничьте общее количество жидкости до 1,5 литра в день (примерно 6 чашек); учитывайте воду, кофе, чай, супы и т.п.",
+          "Позвоните врачу, если наберёте более 2 фунтов за один день или более 5 фунтов за неделю.",
+          "Сдайте анализ крови (BMP) примерно через неделю по указанию.",
+          "Сохраните приём у кардиолога через 7 дней; возьмите список лекарств и дневник веса.",
+          "Немедленно обратитесь в отделение неотложной помощи, если появится боль в груди, одышка в покое или ощущение обморока/потери сознания."
+        ],
+        "red_flags": [
+          "Если у вас боль в груди, одышка в покое или обморок – немедленно звоните 911.",
+          "Если вы набрали более 2 фунтов за день или более 5 фунтов за неделю, заметили усиление одышки при нагрузке, отёки, кашель, головокружение или чувствуете себя unusually tired – позвоните своему врачу."
+        ],
+        "questions": [
+          "Что делать, если я пропустил доз любого лекарства?",
+          "Какие безрецептурные препараты или добавки мне следует избегать?",
+          "Как точно отслеживать ежедневное потребление жидкости?",
+          "Какие признаки высокого уровня калия мне следует наблюдать?",
+          "Когда мне следует перенести приём у кардиолога, если я не могу прийти в назначенное время?",
+          "К кому обращаться с вопросами о диете и ограничении жидкости?"
+        ]
+      }
+    }
+  }
+}

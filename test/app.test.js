@@ -8,7 +8,7 @@ const originalFetch = globalThis.fetch;
 afterEach(() => { globalThis.fetch = originalFetch; });
 const env = { NEBIUS_API_KEY: 'test-only', NEBIUS_MODEL: 'test-model', NEBIUS_BASE_URL: 'https://example.invalid' };
 const section = () => ({ summary: 'Take medicine A.', steps: ['Take medicine A.'], medications: [{ name: 'A', dose: '', when: '', purpose: '', notes: 'Ask your care team' }], red_flags: { call_911: ['Emergency symptom'], call_doctor: ['Doctor symptom'] }, questions: ['What is my dose?'] });
-const result = (spanish = false) => ({ ...section(), spanish: spanish ? section() : null });
+const result = (language = '') => ({ ...section(), translation: language ? { ...section(), language } : null });
 const request = body => new Request('https://app.test/api/explain', { method: 'POST', body: JSON.stringify(body) });
 function mockModel(outputs) {
   const calls = [];
@@ -22,7 +22,7 @@ function mockModel(outputs) {
 }
 test('rejects invalid input before inference, without silently truncating', async () => {
   const calls = mockModel([]);
-  for (const body of [null, {}, { text: 123 }, { text: 'short' }, { text: 'x'.repeat(20001) }, { text: 'x'.repeat(30), spanish: 'false' }]) {
+  for (const body of [null, {}, { text: 123 }, { text: 'short' }, { text: 'x'.repeat(20001) }, { text: 'x'.repeat(30), spanish: 'false' }, { text: 'x'.repeat(30), language: 'unsupported' }, { text: 'x'.repeat(30), language: 'toString' }]) {
     assert.equal((await worker.fetch(request(body), env)).status, 400);
   }
   const malformed = new Request('https://app.test/api/explain', { method: 'POST', body: '{' });
@@ -49,10 +49,10 @@ test('withholds a rejected explanation instead of showing added advice', async (
   assert.doesNotMatch(JSON.stringify(body), /Invented/);
 });
 test('fails closed on bad schema, incomplete Spanish, malformed verifier, and network failure', async () => {
-  const incomplete = result(true); delete incomplete.spanish.medications;
-  for (const [draft, check, spanish] of [[{}, { supported: true }, false], [incomplete, { supported: true }, true], [result(), { supported: 'true' }, false], [result(), new Error('secret upstream error'), false]]) {
+  const incomplete = result('es'); delete incomplete.translation.medications;
+  for (const [draft, check, language] of [[{}, { supported: true }, ''], [incomplete, { supported: true }, 'es'], [result(), { supported: 'true' }, ''], [result(), new Error('secret upstream error'), '']]) {
     mockModel([draft, check]);
-    const response = await worker.fetch(request({ text: 'Synthetic discharge instructions for medicine A.', spanish }), env);
+    const response = await worker.fetch(request({ text: 'Synthetic discharge instructions for medicine A.', language }), env);
     const body = await response.json();
     assert.equal(response.status, 502);
     assert.equal(body.raw, undefined);
@@ -61,13 +61,13 @@ test('fails closed on bad schema, incomplete Spanish, malformed verifier, and ne
   }
 });
 test('Spanish rendering preserves urgency, includes schedule, escapes text, and prevents duplicate submits', async () => {
-  const expected = result(true);
-  expected.spanish.red_flags = { call_911: ['EMERGENCY_ES'], call_doctor: ['DOCTOR_ES'] };
-  expected.spanish.medications[0].name = '<script>unsafe</script>';
+  const expected = result('es');
+  expected.translation.red_flags = { call_911: ['EMERGENCY_ES'], call_doctor: ['DOCTOR_ES'] };
+  expected.translation.medications[0].name = '<script>unsafe</script>';
   const button = { disabled: false };
   let calls = 0, resolve;
   const context = vm.createContext({
-    document: { getElementById: () => button }, t: { value: 'Synthetic discharge instructions' }, es: { checked: true },
+    document: { getElementById: id => id === 'go' ? button : { value: 'es' } }, t: { value: 'Synthetic discharge instructions' },
     st: { textContent: '' }, out: { innerHTML: '' },
     fetch: async () => { calls++; await new Promise(r => { resolve = r; }); return { ok: true, json: async () => ({ result: expected, model: 'test' }) }; },
   });
@@ -82,4 +82,24 @@ test('Spanish rendering preserves urgency, includes schedule, escapes text, and 
   assert.match(rendered, /Horario de medicamentos/);
   assert.match(rendered, /&lt;script&gt;unsafe&lt;\/script&gt;/);
   assert.equal(button.disabled, false);
+});
+test('validates all supported translations and retains the earlier Spanish API', async () => {
+  for (const language of ['es', 'zh', 'ar', 'ru']) {
+    mockModel([result(language), { supported: true }]);
+    const response = await worker.fetch(request({ text: 'Synthetic discharge instructions for medicine A.', language }), env);
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).result.translation.language, language);
+  }
+  mockModel([result('es'), { supported: true }]);
+  const response = await worker.fetch(request({ text: 'Synthetic discharge instructions for medicine A.', spanish: true }), env);
+  assert.equal((await response.json()).result.spanish.language, 'es');
+});
+test('Arabic rendering keeps right-to-left layout and separate warnings', async () => {
+  const button = { disabled: false };
+  const context = vm.createContext({ document: { getElementById: id => id === 'go' ? button : { value: 'ar' } }, t: { value: 'Synthetic discharge instructions' }, st: {}, out: {}, fetch: async () => ({ ok: true, json: async () => ({ result: result('ar') }) }) });
+  vm.runInContext(HTML.match(/<script>([\s\S]*)<\/script>/)[1], context);
+  await vm.runInContext('explainPapers()', context);
+  assert.match(context.out.innerHTML, /<section lang=ar dir=rtl>/);
+  assert.match(context.out.innerHTML, /اتصل بـ 911/);
+  assert.match(context.out.innerHTML, /اتصل بطبيبك/);
 });
