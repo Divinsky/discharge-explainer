@@ -1,0 +1,8 @@
+name = "discharge-explainer"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+NEBIUS_BASE_URL = "https://api.tokenfactory.us-central1.nebius.com/v1"
+NEBIUS_MODEL = "nvidia/nemotron-3-super-120b-a12b"
+# Secret: wrangler secret put NEBIUS_API_KEY
