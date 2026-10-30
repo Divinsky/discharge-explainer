@@ -7,6 +7,8 @@ Paste hospital discharge papers and get back, in plain language (~6th-grade read
 - questions to ask at your follow-up visit
 - optional Spanish translation
 
+**Live demo:** https://discharge-explainer.irina-divinsky.workers.dev
+
 Built for the **Nebius x NVIDIA Global AI Hackathon** (track: Best Apps and Agents).
 
 > **Not medical advice.** This tool only rewrites existing instructions in simpler words and may make mistakes. Always follow your care team's instructions. In an emergency call 911. The included samples are fully synthetic; do not paste real patient identifiers.

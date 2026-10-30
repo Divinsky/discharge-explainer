@@ -3,6 +3,8 @@
 **Title:** Discharge Instructions Explainer
 **Tagline:** Turn confusing hospital discharge papers into clear steps, a medicine schedule, and warning signs — in plain English or Spanish, powered by NVIDIA Nemotron on Nebius.
 **Track:** Best Apps and Agents
+**Live demo:** https://discharge-explainer.irina-divinsky.workers.dev
+**Repo:** https://github.com/Divinsky/discharge-explainer
 
 ## Inspiration
 I'm Ira Divinsky, founder of IntelliGene AI. I've spent about 20 years in federal healthcare IT, including work with HHS. Again and again I've seen the same gap: patients leave the hospital with pages of dense, jargon-filled discharge instructions ("furosemide 40 mg PO BID", "call if >2 lb gain") at the most stressful moment of their lives. Many patients and caregivers can't act on them, and misunderstood instructions contribute to medication errors, missed warning signs, and avoidable readmissions. I wanted a simple tool any family member could use at the bedside or kitchen table.
