@@ -48,6 +48,23 @@ test('withholds a rejected explanation instead of showing added advice', async (
   assert.equal(body.result, undefined);
   assert.doesNotMatch(JSON.stringify(body), /Invented/);
 });
+test('repairs a rejected draft once, then verifies the corrected result', async () => {
+  const draft = result(); draft.medications[0].notes = 'Invented side effect advice';
+  const corrected = result();
+  const calls = mockModel([draft, { supported: false, issues: ['Remove invented side effect advice.'] }, corrected, { supported: true }]);
+  const response = await worker.fetch(request({ text: 'Synthetic discharge instructions for medicine A.' }), env);
+  assert.equal(response.status, 200);
+  assert.deepEqual((await response.json()).result, corrected);
+  assert.equal(calls.length, 4);
+  assert.match(calls[2].messages[1].content, /Remove invented side effect advice/);
+});
+test('stops after one unsuccessful repair without returning either draft', async () => {
+  const calls = mockModel([result(), { supported: false, issues: ['Unsupported detail'] }, result(), { supported: false, issues: ['Still unsupported'] }]);
+  const response = await worker.fetch(request({ text: 'Synthetic discharge instructions for medicine A.' }), env);
+  assert.equal(response.status, 502);
+  assert.equal((await response.json()).result, undefined);
+  assert.equal(calls.length, 4);
+});
 test('fails closed on bad schema, incomplete Spanish, malformed verifier, and network failure', async () => {
   const incomplete = result('es'); delete incomplete.translation.medications;
   for (const [draft, check, language] of [[{}, { supported: true }, ''], [incomplete, { supported: true }, 'es'], [result(), { supported: 'true' }, ''], [result(), new Error('secret upstream error'), '']]) {

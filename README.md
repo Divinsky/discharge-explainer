@@ -30,7 +30,7 @@ The app has no database and does not deliberately persist or log pasted text. Te
 ## Source checking and limitations
 The prompt requires source-only instructions and expanded abbreviations. After validating the response structure, the Worker makes a separate model call to check every section against the papers. Failed checks, incomplete translations, and malformed responses withhold the explanation. Every translation includes a medication schedule and separate 911/doctor warning categories.
 
-This model-based check reduces risk; it does not guarantee factual or clinical correctness. Reading level has not been formally measured. Two inference calls increase latency; timing varies with input length and translation.
+One repair attempt is allowed for failed structure/source checks, followed by verification again. Unverified drafts are never displayed. This model-based check reduces risk; it does not guarantee factual or clinical correctness. Reading level has not been formally measured. Generation and verification (plus repair when needed) increase latency; timing varies with input length and translation.
 
 Run `npm test` for input validation, rejection paths, and Spanish rendering checks. Run `npx wrangler deploy --dry-run` to verify Worker packaging. Automated tests use mocked inference and do not establish model reliability.
 
