@@ -16,7 +16,7 @@ Paste discharge papers and get:
 - Red-flag warning signs split into "Call 911" vs. "Call your doctor"
 - Questions to ask at the follow-up visit
 - Optional translation via a language dropdown: Spanish, Mandarin (Simplified Chinese), Arabic (right-to-left), or Russian
-Two synthetic sample discharges (heart failure, gallbladder surgery) are built in. A prominent "not medical advice" disclaimer is always shown. The app has no database and does not deliberately persist input; text is sent to Nebius, whose retention practices are separate.
+Two synthetic sample discharges (heart failure, gallbladder surgery) are built in, with prepared, edited multilingual examples for instant demonstrations. These are labeled as prepared; custom text runs live on Nemotron. A prominent "not medical advice" disclaimer is always shown. The app does not deliberately persist discharge text. Optional ratings, flagged sections, and comments are saved in Cloudflare KV for a public demo leadership page; feedback must not contain identifying or health details.
 
 ## How we built it
 - **NVIDIA Nemotron 3 Super (`nvidia/nemotron-3-super-120b-a12b`)** — open model doing the rewriting, structuring, and translation.
@@ -33,7 +33,7 @@ Two synthetic sample discharges (heart failure, gallbladder surgery) are built i
 ## Accomplishments that we're proud of
 - An end-to-end, deployable app built in hours with a tiny, auditable codebase.
 - Multilingual output (Spanish, Mandarin, Arabic RTL, Russian) for patients with limited English proficiency.
-- Stateless app with no database and synthetic-only built-in samples; input is processed by Nebius.
+- Synthetic-only built-in examples; custom discharge text is processed by Nebius. Optional feedback is saved in KV for leadership summaries.
 
 ## Results
 Live API testing with both synthetic samples returned structured explanations. Before adding the source-checking pass, one retest took about 10 seconds for English and 20 seconds with Spanish. The current version adds a second inference call, so latency must be measured again and is not guaranteed. Spanish includes medication schedules and separate 911/doctor warnings. Historical output in `sample-output.json` predates these safeguards and is not a correctness benchmark.

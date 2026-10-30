@@ -1,0 +1,1204 @@
+{
+  "1": {
+    "": {
+      "summary": "You were treated for worsening heart failure. Follow these home instructions and see cardiology in 7 days.",
+      "steps": [
+        "Limit sodium to 2 grams per day.",
+        "Limit fluids to 1.5 liters per day.",
+        "Weigh yourself each morning.",
+        "Do not take ibuprofen or other NSAIDs.",
+        "Have a blood test (BMP) in 1 week.",
+        "See cardiology (Dr. Sample) in 7 days."
+      ],
+      "medications": [
+        {
+          "name": "Furosemide",
+          "dose": "40 mg",
+          "when": "By mouth, twice a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Metoprolol succinate",
+          "dose": "25 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Lisinopril",
+          "dose": "5 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Spironolactone",
+          "dose": "12.5 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Potassium chloride",
+          "dose": "20 mEq",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Aspirin",
+          "dose": "81 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Ibuprofen / NSAIDs",
+          "dose": "",
+          "when": "Do not take",
+          "purpose": "",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [
+          "Chest pain",
+          "Trouble breathing at rest",
+          "Fainting"
+        ],
+        "call_doctor": [
+          "Weight gain of more than 2 pounds in 1 day",
+          "Weight gain of more than 5 pounds in 1 week"
+        ]
+      },
+      "questions": [
+        "When should I take each medicine?",
+        "Where should I have my blood test?"
+      ],
+      "translation": null
+    },
+    "es": {
+      "summary": "You were treated for worsening heart failure. Follow these home instructions and see cardiology in 7 days.",
+      "steps": [
+        "Limit sodium to 2 grams per day.",
+        "Limit fluids to 1.5 liters per day.",
+        "Weigh yourself each morning.",
+        "Do not take ibuprofen or other NSAIDs.",
+        "Have a blood test (BMP) in 1 week.",
+        "See cardiology (Dr. Sample) in 7 days."
+      ],
+      "medications": [
+        {
+          "name": "Furosemide",
+          "dose": "40 mg",
+          "when": "By mouth, twice a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Metoprolol succinate",
+          "dose": "25 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Lisinopril",
+          "dose": "5 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Spironolactone",
+          "dose": "12.5 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Potassium chloride",
+          "dose": "20 mEq",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Aspirin",
+          "dose": "81 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Ibuprofen / NSAIDs",
+          "dose": "",
+          "when": "Do not take",
+          "purpose": "",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [
+          "Chest pain",
+          "Trouble breathing at rest",
+          "Fainting"
+        ],
+        "call_doctor": [
+          "Weight gain of more than 2 pounds in 1 day",
+          "Weight gain of more than 5 pounds in 1 week"
+        ]
+      },
+      "questions": [
+        "When should I take each medicine?",
+        "Where should I have my blood test?"
+      ],
+      "translation": {
+        "summary": "Recibió tratamiento por un empeoramiento de la insuficiencia cardíaca. Siga estas instrucciones en casa y acuda a cardiología en 7 días.",
+        "steps": [
+          "Limite el sodio a 2 gramos al día.",
+          "Limite los líquidos a 1.5 litros al día.",
+          "Pésese cada mañana.",
+          "No tome ibuprofeno ni otros antiinflamatorios no esteroideos (AINE).",
+          "Hágase un análisis de sangre (BMP) en 1 semana.",
+          "Acuda a cardiología (Dr. Sample) en 7 días."
+        ],
+        "medications": [
+          {
+            "name": "Furosemide",
+            "dose": "40 mg",
+            "when": "Por boca, dos veces al día",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Metoprolol succinate",
+            "dose": "25 mg",
+            "when": "Por boca, una vez al día",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Lisinopril",
+            "dose": "5 mg",
+            "when": "Por boca, una vez al día",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Spironolactone",
+            "dose": "12.5 mg",
+            "when": "Por boca, una vez al día",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Potassium chloride",
+            "dose": "20 mEq",
+            "when": "Por boca, una vez al día",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Aspirin",
+            "dose": "81 mg",
+            "when": "Por boca, una vez al día",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Ibuprofen / NSAIDs",
+            "dose": "",
+            "when": "No tomar",
+            "purpose": "",
+            "notes": ""
+          }
+        ],
+        "red_flags": {
+          "call_911": [
+            "Dolor en el pecho",
+            "Dificultad para respirar en reposo",
+            "Desmayo"
+          ],
+          "call_doctor": [
+            "Aumento de más de 2 libras en 1 día",
+            "Aumento de más de 5 libras en 1 semana"
+          ]
+        },
+        "questions": [
+          "¿Cuándo debo tomar cada medicamento?",
+          "¿Dónde debo hacerme el análisis de sangre?"
+        ],
+        "language": "es"
+      }
+    },
+    "zh": {
+      "summary": "You were treated for worsening heart failure. Follow these home instructions and see cardiology in 7 days.",
+      "steps": [
+        "Limit sodium to 2 grams per day.",
+        "Limit fluids to 1.5 liters per day.",
+        "Weigh yourself each morning.",
+        "Do not take ibuprofen or other NSAIDs.",
+        "Have a blood test (BMP) in 1 week.",
+        "See cardiology (Dr. Sample) in 7 days."
+      ],
+      "medications": [
+        {
+          "name": "Furosemide",
+          "dose": "40 mg",
+          "when": "By mouth, twice a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Metoprolol succinate",
+          "dose": "25 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Lisinopril",
+          "dose": "5 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Spironolactone",
+          "dose": "12.5 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Potassium chloride",
+          "dose": "20 mEq",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Aspirin",
+          "dose": "81 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Ibuprofen / NSAIDs",
+          "dose": "",
+          "when": "Do not take",
+          "purpose": "",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [
+          "Chest pain",
+          "Trouble breathing at rest",
+          "Fainting"
+        ],
+        "call_doctor": [
+          "Weight gain of more than 2 pounds in 1 day",
+          "Weight gain of more than 5 pounds in 1 week"
+        ]
+      },
+      "questions": [
+        "When should I take each medicine?",
+        "Where should I have my blood test?"
+      ],
+      "translation": {
+        "summary": "您因心力衰竭加重接受了治疗。请遵循以下居家指导，并在7天后到心脏科复诊。",
+        "steps": [
+          "每天摄入的钠限制在2克。",
+          "每天饮用的液体限制在1.5升。",
+          "每天早晨称体重。",
+          "不要服用布洛芬或其他非甾体抗炎药（NSAIDs）。",
+          "1周后做血液检查（BMP）。",
+          "7天后到心脏科（Sample医生）复诊。"
+        ],
+        "medications": [
+          {
+            "name": "Furosemide",
+            "dose": "40 mg",
+            "when": "口服，每天两次",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Metoprolol succinate",
+            "dose": "25 mg",
+            "when": "口服，每天一次",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Lisinopril",
+            "dose": "5 mg",
+            "when": "口服，每天一次",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Spironolactone",
+            "dose": "12.5 mg",
+            "when": "口服，每天一次",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Potassium chloride",
+            "dose": "20 mEq",
+            "when": "口服，每天一次",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Aspirin",
+            "dose": "81 mg",
+            "when": "口服，每天一次",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Ibuprofen / NSAIDs",
+            "dose": "",
+            "when": "不要服用",
+            "purpose": "",
+            "notes": ""
+          }
+        ],
+        "red_flags": {
+          "call_911": [
+            "胸痛",
+            "休息时呼吸困难",
+            "昏厥"
+          ],
+          "call_doctor": [
+            "1天内体重增加超过2磅",
+            "1周内体重增加超过5磅"
+          ]
+        },
+        "questions": [
+          "每种药应该什么时候服用？",
+          "我应该在哪里做血液检查？"
+        ],
+        "language": "zh"
+      }
+    },
+    "ar": {
+      "summary": "You were treated for worsening heart failure. Follow these home instructions and see cardiology in 7 days.",
+      "steps": [
+        "Limit sodium to 2 grams per day.",
+        "Limit fluids to 1.5 liters per day.",
+        "Weigh yourself each morning.",
+        "Do not take ibuprofen or other NSAIDs.",
+        "Have a blood test (BMP) in 1 week.",
+        "See cardiology (Dr. Sample) in 7 days."
+      ],
+      "medications": [
+        {
+          "name": "Furosemide",
+          "dose": "40 mg",
+          "when": "By mouth, twice a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Metoprolol succinate",
+          "dose": "25 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Lisinopril",
+          "dose": "5 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Spironolactone",
+          "dose": "12.5 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Potassium chloride",
+          "dose": "20 mEq",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Aspirin",
+          "dose": "81 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Ibuprofen / NSAIDs",
+          "dose": "",
+          "when": "Do not take",
+          "purpose": "",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [
+          "Chest pain",
+          "Trouble breathing at rest",
+          "Fainting"
+        ],
+        "call_doctor": [
+          "Weight gain of more than 2 pounds in 1 day",
+          "Weight gain of more than 5 pounds in 1 week"
+        ]
+      },
+      "questions": [
+        "When should I take each medicine?",
+        "Where should I have my blood test?"
+      ],
+      "translation": {
+        "summary": "تلقيت علاجًا لتفاقم قصور القلب. اتبع هذه التعليمات في المنزل وراجع عيادة القلب بعد 7 أيام.",
+        "steps": [
+          "قلل الصوديوم إلى 2 غرام يوميًا.",
+          "قلل السوائل إلى 1.5 لتر يوميًا.",
+          "زن نفسك كل صباح.",
+          "لا تتناول الإيبوبروفين أو غيره من مضادات الالتهاب غير الستيرويدية (NSAIDs).",
+          "أجرِ فحص دم (BMP) بعد أسبوع واحد.",
+          "راجع عيادة القلب (الدكتور Sample) بعد 7 أيام."
+        ],
+        "medications": [
+          {
+            "name": "Furosemide",
+            "dose": "40 mg",
+            "when": "عن طريق الفم، مرتين يوميًا",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Metoprolol succinate",
+            "dose": "25 mg",
+            "when": "عن طريق الفم، مرة يوميًا",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Lisinopril",
+            "dose": "5 mg",
+            "when": "عن طريق الفم، مرة يوميًا",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Spironolactone",
+            "dose": "12.5 mg",
+            "when": "عن طريق الفم، مرة يوميًا",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Potassium chloride",
+            "dose": "20 mEq",
+            "when": "عن طريق الفم، مرة يوميًا",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Aspirin",
+            "dose": "81 mg",
+            "when": "عن طريق الفم، مرة يوميًا",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Ibuprofen / NSAIDs",
+            "dose": "",
+            "when": "لا تتناول هذا الدواء",
+            "purpose": "",
+            "notes": ""
+          }
+        ],
+        "red_flags": {
+          "call_911": [
+            "ألم في الصدر",
+            "صعوبة التنفس أثناء الراحة",
+            "الإغماء"
+          ],
+          "call_doctor": [
+            "زيادة الوزن بأكثر من رطلين خلال يوم واحد",
+            "زيادة الوزن بأكثر من 5 أرطال خلال أسبوع واحد"
+          ]
+        },
+        "questions": [
+          "متى يجب أن أتناول كل دواء؟",
+          "أين يجب أن أجري فحص الدم؟"
+        ],
+        "language": "ar"
+      }
+    },
+    "ru": {
+      "summary": "You were treated for worsening heart failure. Follow these home instructions and see cardiology in 7 days.",
+      "steps": [
+        "Limit sodium to 2 grams per day.",
+        "Limit fluids to 1.5 liters per day.",
+        "Weigh yourself each morning.",
+        "Do not take ibuprofen or other NSAIDs.",
+        "Have a blood test (BMP) in 1 week.",
+        "See cardiology (Dr. Sample) in 7 days."
+      ],
+      "medications": [
+        {
+          "name": "Furosemide",
+          "dose": "40 mg",
+          "when": "By mouth, twice a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Metoprolol succinate",
+          "dose": "25 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Lisinopril",
+          "dose": "5 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Spironolactone",
+          "dose": "12.5 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Potassium chloride",
+          "dose": "20 mEq",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Aspirin",
+          "dose": "81 mg",
+          "when": "By mouth, once a day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Ibuprofen / NSAIDs",
+          "dose": "",
+          "when": "Do not take",
+          "purpose": "",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [
+          "Chest pain",
+          "Trouble breathing at rest",
+          "Fainting"
+        ],
+        "call_doctor": [
+          "Weight gain of more than 2 pounds in 1 day",
+          "Weight gain of more than 5 pounds in 1 week"
+        ]
+      },
+      "questions": [
+        "When should I take each medicine?",
+        "Where should I have my blood test?"
+      ],
+      "translation": {
+        "summary": "Вы прошли лечение из-за ухудшения сердечной недостаточности. Выполняйте эти рекомендации дома и посетите кардиолога через 7 дней.",
+        "steps": [
+          "Ограничьте натрий до 2 граммов в день.",
+          "Ограничьте жидкость до 1.5 литра в день.",
+          "Взвешивайтесь каждое утро.",
+          "Не принимайте ибупрофен и другие нестероидные противовоспалительные препараты (НПВП).",
+          "Сдайте анализ крови (BMP) через 1 неделю.",
+          "Посетите кардиолога (доктор Sample) через 7 дней."
+        ],
+        "medications": [
+          {
+            "name": "Furosemide",
+            "dose": "40 mg",
+            "when": "Внутрь, два раза в день",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Metoprolol succinate",
+            "dose": "25 mg",
+            "when": "Внутрь, один раз в день",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Lisinopril",
+            "dose": "5 mg",
+            "when": "Внутрь, один раз в день",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Spironolactone",
+            "dose": "12.5 mg",
+            "when": "Внутрь, один раз в день",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Potassium chloride",
+            "dose": "20 mEq",
+            "when": "Внутрь, один раз в день",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Aspirin",
+            "dose": "81 mg",
+            "when": "Внутрь, один раз в день",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Ibuprofen / NSAIDs",
+            "dose": "",
+            "when": "Не принимать",
+            "purpose": "",
+            "notes": ""
+          }
+        ],
+        "red_flags": {
+          "call_911": [
+            "Боль в груди",
+            "Затруднённое дыхание в покое",
+            "Обморок"
+          ],
+          "call_doctor": [
+            "Прибавка веса более 2 фунтов за 1 день",
+            "Прибавка веса более 5 фунтов за 1 неделю"
+          ]
+        },
+        "questions": [
+          "Когда мне принимать каждое лекарство?",
+          "Где мне сдать анализ крови?"
+        ],
+        "language": "ru"
+      }
+    }
+  },
+  "2": {
+    "": {
+      "summary": "You had laparoscopic gallbladder surgery without complications. Follow these instructions and see the surgery clinic in 2 weeks.",
+      "steps": [
+        "You may shower after 48 hours.",
+        "Do not take tub baths or swim for 2 weeks.",
+        "Let the Steri-Strips fall off on their own.",
+        "Do not lift more than 10 pounds for 2 weeks.",
+        "Do not drive while taking oxycodone.",
+        "See the general surgery clinic in 2 weeks."
+      ],
+      "medications": [
+        {
+          "name": "Oxycodone",
+          "dose": "5 mg",
+          "when": "By mouth, every 6 hours as needed for severe pain; maximum 4 doses per day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Acetaminophen",
+          "dose": "650 mg",
+          "when": "By mouth, every 6 hours on schedule for 5 days; maximum 3 grams per day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Docusate",
+          "dose": "100 mg",
+          "when": "By mouth, twice a day while taking opioids",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Metformin",
+          "dose": "500 mg",
+          "when": "Resume twice a day with meals",
+          "purpose": "",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [],
+        "call_doctor": [
+          "Temperature above 101.5°F",
+          "Wound redness or drainage",
+          "Yellow skin or eyes (jaundice)",
+          "Persistent nausea or vomiting",
+          "Unable to take food or fluids by mouth"
+        ]
+      },
+      "questions": [
+        "When can I return to my usual activities?",
+        "Who should I call with questions about my medicines?"
+      ],
+      "translation": null
+    },
+    "es": {
+      "summary": "You had laparoscopic gallbladder surgery without complications. Follow these instructions and see the surgery clinic in 2 weeks.",
+      "steps": [
+        "You may shower after 48 hours.",
+        "Do not take tub baths or swim for 2 weeks.",
+        "Let the Steri-Strips fall off on their own.",
+        "Do not lift more than 10 pounds for 2 weeks.",
+        "Do not drive while taking oxycodone.",
+        "See the general surgery clinic in 2 weeks."
+      ],
+      "medications": [
+        {
+          "name": "Oxycodone",
+          "dose": "5 mg",
+          "when": "By mouth, every 6 hours as needed for severe pain; maximum 4 doses per day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Acetaminophen",
+          "dose": "650 mg",
+          "when": "By mouth, every 6 hours on schedule for 5 days; maximum 3 grams per day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Docusate",
+          "dose": "100 mg",
+          "when": "By mouth, twice a day while taking opioids",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Metformin",
+          "dose": "500 mg",
+          "when": "Resume twice a day with meals",
+          "purpose": "",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [],
+        "call_doctor": [
+          "Temperature above 101.5°F",
+          "Wound redness or drainage",
+          "Yellow skin or eyes (jaundice)",
+          "Persistent nausea or vomiting",
+          "Unable to take food or fluids by mouth"
+        ]
+      },
+      "questions": [
+        "When can I return to my usual activities?",
+        "Who should I call with questions about my medicines?"
+      ],
+      "translation": {
+        "summary": "Le hicieron una cirugía laparoscópica de la vesícula biliar sin complicaciones. Siga estas instrucciones y acuda a la clínica de cirugía en 2 semanas.",
+        "steps": [
+          "Puede ducharse después de 48 horas.",
+          "No se bañe en tina ni nade durante 2 semanas.",
+          "Deje que las tiras Steri-Strips se caigan solas.",
+          "No levante más de 10 libras durante 2 semanas.",
+          "No conduzca mientras tome oxicodona.",
+          "Acuda a la clínica de cirugía general en 2 semanas."
+        ],
+        "medications": [
+          {
+            "name": "Oxycodone",
+            "dose": "5 mg",
+            "when": "Por boca, cada 6 horas según sea necesario para dolor intenso; máximo 4 dosis al día",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Acetaminophen",
+            "dose": "650 mg",
+            "when": "Por boca, cada 6 horas en horario fijo durante 5 días; máximo 3 gramos al día",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Docusate",
+            "dose": "100 mg",
+            "when": "Por boca, dos veces al día mientras tome opioides",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Metformin",
+            "dose": "500 mg",
+            "when": "Reanude dos veces al día con las comidas",
+            "purpose": "",
+            "notes": ""
+          }
+        ],
+        "red_flags": {
+          "call_911": [],
+          "call_doctor": [
+            "Temperatura superior a 101.5°F",
+            "Enrojecimiento o secreción de la herida",
+            "Piel u ojos amarillos (ictericia)",
+            "Náuseas o vómitos persistentes",
+            "No puede tomar alimentos o líquidos por boca"
+          ]
+        },
+        "questions": [
+          "¿Cuándo puedo volver a mis actividades habituales?",
+          "¿A quién debo llamar si tengo preguntas sobre mis medicamentos?"
+        ],
+        "language": "es"
+      }
+    },
+    "zh": {
+      "summary": "You had laparoscopic gallbladder surgery without complications. Follow these instructions and see the surgery clinic in 2 weeks.",
+      "steps": [
+        "You may shower after 48 hours.",
+        "Do not take tub baths or swim for 2 weeks.",
+        "Let the Steri-Strips fall off on their own.",
+        "Do not lift more than 10 pounds for 2 weeks.",
+        "Do not drive while taking oxycodone.",
+        "See the general surgery clinic in 2 weeks."
+      ],
+      "medications": [
+        {
+          "name": "Oxycodone",
+          "dose": "5 mg",
+          "when": "By mouth, every 6 hours as needed for severe pain; maximum 4 doses per day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Acetaminophen",
+          "dose": "650 mg",
+          "when": "By mouth, every 6 hours on schedule for 5 days; maximum 3 grams per day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Docusate",
+          "dose": "100 mg",
+          "when": "By mouth, twice a day while taking opioids",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Metformin",
+          "dose": "500 mg",
+          "when": "Resume twice a day with meals",
+          "purpose": "",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [],
+        "call_doctor": [
+          "Temperature above 101.5°F",
+          "Wound redness or drainage",
+          "Yellow skin or eyes (jaundice)",
+          "Persistent nausea or vomiting",
+          "Unable to take food or fluids by mouth"
+        ]
+      },
+      "questions": [
+        "When can I return to my usual activities?",
+        "Who should I call with questions about my medicines?"
+      ],
+      "translation": {
+        "summary": "您接受了腹腔镜胆囊切除术，没有并发症。请遵循以下指导，并在2周后到外科门诊复诊。",
+        "steps": [
+          "48小时后可以淋浴。",
+          "2周内不要泡澡或游泳。",
+          "让Steri-Strips伤口胶带自行脱落。",
+          "2周内不要提举超过10磅的物品。",
+          "服用羟考酮期间不要开车。",
+          "2周后到普通外科门诊复诊。"
+        ],
+        "medications": [
+          {
+            "name": "Oxycodone",
+            "dose": "5 mg",
+            "when": "口服，严重疼痛时按需每6小时服用；每天最多4次",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Acetaminophen",
+            "dose": "650 mg",
+            "when": "口服，按固定时间每6小时服用，连续5天；每天最多3克",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Docusate",
+            "dose": "100 mg",
+            "when": "口服，服用阿片类药物期间每天两次",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Metformin",
+            "dose": "500 mg",
+            "when": "恢复每天两次，随餐服用",
+            "purpose": "",
+            "notes": ""
+          }
+        ],
+        "red_flags": {
+          "call_911": [],
+          "call_doctor": [
+            "体温超过101.5°F",
+            "伤口发红或有渗液",
+            "皮肤或眼睛发黄（黄疸）",
+            "持续恶心或呕吐",
+            "无法经口进食或喝水"
+          ]
+        },
+        "questions": [
+          "我什么时候可以恢复日常活动？",
+          "如果对药物有疑问，我应该联系谁？"
+        ],
+        "language": "zh"
+      }
+    },
+    "ar": {
+      "summary": "You had laparoscopic gallbladder surgery without complications. Follow these instructions and see the surgery clinic in 2 weeks.",
+      "steps": [
+        "You may shower after 48 hours.",
+        "Do not take tub baths or swim for 2 weeks.",
+        "Let the Steri-Strips fall off on their own.",
+        "Do not lift more than 10 pounds for 2 weeks.",
+        "Do not drive while taking oxycodone.",
+        "See the general surgery clinic in 2 weeks."
+      ],
+      "medications": [
+        {
+          "name": "Oxycodone",
+          "dose": "5 mg",
+          "when": "By mouth, every 6 hours as needed for severe pain; maximum 4 doses per day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Acetaminophen",
+          "dose": "650 mg",
+          "when": "By mouth, every 6 hours on schedule for 5 days; maximum 3 grams per day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Docusate",
+          "dose": "100 mg",
+          "when": "By mouth, twice a day while taking opioids",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Metformin",
+          "dose": "500 mg",
+          "when": "Resume twice a day with meals",
+          "purpose": "",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [],
+        "call_doctor": [
+          "Temperature above 101.5°F",
+          "Wound redness or drainage",
+          "Yellow skin or eyes (jaundice)",
+          "Persistent nausea or vomiting",
+          "Unable to take food or fluids by mouth"
+        ]
+      },
+      "questions": [
+        "When can I return to my usual activities?",
+        "Who should I call with questions about my medicines?"
+      ],
+      "translation": {
+        "summary": "أُجريت لك جراحة استئصال المرارة بالمنظار دون مضاعفات. اتبع هذه التعليمات وراجع عيادة الجراحة بعد أسبوعين.",
+        "steps": [
+          "يمكنك الاستحمام بالدش بعد 48 ساعة.",
+          "لا تغطس في حوض الاستحمام ولا تسبح لمدة أسبوعين.",
+          "اترك شرائط Steri-Strips تسقط من تلقاء نفسها.",
+          "لا ترفع أكثر من 10 أرطال لمدة أسبوعين.",
+          "لا تقد السيارة أثناء تناول الأوكسيكودون.",
+          "راجع عيادة الجراحة العامة بعد أسبوعين."
+        ],
+        "medications": [
+          {
+            "name": "Oxycodone",
+            "dose": "5 mg",
+            "when": "عن طريق الفم، كل 6 ساعات عند الحاجة للألم الشديد؛ بحد أقصى 4 جرعات يوميًا",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Acetaminophen",
+            "dose": "650 mg",
+            "when": "عن طريق الفم، كل 6 ساعات بانتظام لمدة 5 أيام؛ بحد أقصى 3 غرامات يوميًا",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Docusate",
+            "dose": "100 mg",
+            "when": "عن طريق الفم، مرتين يوميًا أثناء تناول الأدوية الأفيونية",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Metformin",
+            "dose": "500 mg",
+            "when": "استأنف تناوله مرتين يوميًا مع الوجبات",
+            "purpose": "",
+            "notes": ""
+          }
+        ],
+        "red_flags": {
+          "call_911": [],
+          "call_doctor": [
+            "درجة حرارة أعلى من 101.5°F",
+            "احمرار الجرح أو خروج إفرازات منه",
+            "اصفرار الجلد أو العينين (اليرقان)",
+            "غثيان أو قيء مستمر",
+            "عدم القدرة على تناول الطعام أو السوائل عن طريق الفم"
+          ]
+        },
+        "questions": [
+          "متى يمكنني العودة إلى أنشطتي المعتادة؟",
+          "بمن أتصل إذا كانت لدي أسئلة عن أدويتي؟"
+        ],
+        "language": "ar"
+      }
+    },
+    "ru": {
+      "summary": "You had laparoscopic gallbladder surgery without complications. Follow these instructions and see the surgery clinic in 2 weeks.",
+      "steps": [
+        "You may shower after 48 hours.",
+        "Do not take tub baths or swim for 2 weeks.",
+        "Let the Steri-Strips fall off on their own.",
+        "Do not lift more than 10 pounds for 2 weeks.",
+        "Do not drive while taking oxycodone.",
+        "See the general surgery clinic in 2 weeks."
+      ],
+      "medications": [
+        {
+          "name": "Oxycodone",
+          "dose": "5 mg",
+          "when": "By mouth, every 6 hours as needed for severe pain; maximum 4 doses per day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Acetaminophen",
+          "dose": "650 mg",
+          "when": "By mouth, every 6 hours on schedule for 5 days; maximum 3 grams per day",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Docusate",
+          "dose": "100 mg",
+          "when": "By mouth, twice a day while taking opioids",
+          "purpose": "",
+          "notes": ""
+        },
+        {
+          "name": "Metformin",
+          "dose": "500 mg",
+          "when": "Resume twice a day with meals",
+          "purpose": "",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [],
+        "call_doctor": [
+          "Temperature above 101.5°F",
+          "Wound redness or drainage",
+          "Yellow skin or eyes (jaundice)",
+          "Persistent nausea or vomiting",
+          "Unable to take food or fluids by mouth"
+        ]
+      },
+      "questions": [
+        "When can I return to my usual activities?",
+        "Who should I call with questions about my medicines?"
+      ],
+      "translation": {
+        "summary": "Вам удалили желчный пузырь лапароскопическим методом без осложнений. Выполняйте эти рекомендации и посетите хирургическую клинику через 2 недели.",
+        "steps": [
+          "Можно принимать душ через 48 часов.",
+          "Не принимайте ванну и не плавайте в течение 2 недель.",
+          "Дайте полоскам Steri-Strips отпасть самостоятельно.",
+          "Не поднимайте более 10 фунтов в течение 2 недель.",
+          "Не садитесь за руль во время приёма оксикодона.",
+          "Посетите клинику общей хирургии через 2 недели."
+        ],
+        "medications": [
+          {
+            "name": "Oxycodone",
+            "dose": "5 mg",
+            "when": "Внутрь, каждые 6 часов при сильной боли по необходимости; не более 4 доз в день",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Acetaminophen",
+            "dose": "650 mg",
+            "when": "Внутрь, каждые 6 часов по расписанию в течение 5 дней; не более 3 граммов в день",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Docusate",
+            "dose": "100 mg",
+            "when": "Внутрь, два раза в день во время приёма опиоидов",
+            "purpose": "",
+            "notes": ""
+          },
+          {
+            "name": "Metformin",
+            "dose": "500 mg",
+            "when": "Возобновите приём два раза в день во время еды",
+            "purpose": "",
+            "notes": ""
+          }
+        ],
+        "red_flags": {
+          "call_911": [],
+          "call_doctor": [
+            "Температура выше 101.5°F",
+            "Покраснение раны или выделения из неё",
+            "Пожелтение кожи или глаз (желтуха)",
+            "Постоянная тошнота или рвота",
+            "Невозможность принимать пищу или жидкость через рот"
+          ]
+        },
+        "questions": [
+          "Когда я могу вернуться к обычным занятиям?",
+          "Кому позвонить с вопросами о лекарствах?"
+        ],
+        "language": "ru"
+      }
+    }
+  }
+}

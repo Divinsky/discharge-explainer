@@ -25,7 +25,14 @@ Browser (static HTML/JS served by Worker)
         └─ Cloudflare Worker (src/index.js)  -- NEBIUS_API_KEY stored as a Worker secret
              └─ Nebius Token Factory /v1/chat/completions  ->  NVIDIA Nemotron 3 Super
 ```
-The app has no database and does not deliberately persist or log pasted text. Text is sent to Nebius for generation and source checking; provider retention and infrastructure logs are separate from application storage. Use synthetic data for the demo.
+The app does not deliberately persist pasted discharge text. Custom text is sent to Nebius for generation and source checking; provider retention and infrastructure logs are separate. Optional ratings, flagged sections, and comments are saved in Cloudflare KV for the public demo leadership page. Do not enter identifying or health details in feedback.
+
+## Recording demo
+The two unchanged synthetic samples have prepared, edited explanations in all five menu languages. These are served instantly and clearly labeled as prepared examples, not live inference. They are based on captured Nemotron output, with editorial corrections and translations; they have not had clinical or professional translation review. Changing a sample's text uses live inference. After displaying a sample, changing the language refreshes the prepared example automatically.
+
+Custom input still runs live generation and verification. Rewriting disables Nemotron reasoning traces to reduce overhead; the separate source-checking pass remains enabled. See [NVIDIA's model card](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16) for reasoning-mode support.
+
+The feedback form and `/leadership` page use the existing `FEEDBACK` KV binding. The dashboard labels its seeded synthetic data.
 
 ## Source checking and limitations
 The prompt requires source-only instructions and expanded abbreviations. After validating the response structure, the Worker makes a separate model call to check every section against the papers. Failed checks, incomplete translations, and malformed responses withhold the explanation. Every translation includes a medication schedule and separate 911/doctor warning categories.

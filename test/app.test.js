@@ -2,7 +2,7 @@ import { test, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import worker from '../src/index.js';
-import { HTML } from '../src/page.js';
+import { HTML, SAMPLE1, SAMPLE2 } from '../src/page.js';
 
 const originalFetch = globalThis.fetch;
 afterEach(() => { globalThis.fetch = originalFetch; });
@@ -119,4 +119,42 @@ test('Arabic rendering keeps right-to-left layout and separate warnings', async 
   assert.match(context.out.innerHTML, /<section lang=ar dir=rtl>/);
   assert.match(context.out.innerHTML, /اتصل بـ 911/);
   assert.match(context.out.innerHTML, /اتصل بطبيبك/);
+});
+test('all ten prepared sample/language pairs return without inference', async () => {
+  const calls = mockModel([]);
+  for (const text of [SAMPLE1, SAMPLE2]) for (const language of ['', 'es', 'zh', 'ar', 'ru']) {
+    const response = await worker.fetch(request({ text, language }), {});
+    const body = await response.json();
+    assert.equal(response.status, 200);
+    assert.equal(body.prepared, true);
+    assert.ok(body.result.medications.length >= 4);
+    if (language) {
+      assert.equal(body.result.translation.language, language);
+      assert.deepEqual(body.result.translation.medications.map(m => m.dose), body.result.medications.map(m => m.dose));
+      assert.equal(body.result.translation.red_flags.call_911.length, body.result.red_flags.call_911.length);
+      assert.equal(body.result.translation.red_flags.call_doctor.length, body.result.red_flags.call_doctor.length);
+    }
+  }
+  assert.equal(calls.length, 0);
+});
+test('edited sample text always takes the live generation/checking path', async () => {
+  const calls = mockModel([result(), { supported: true }]);
+  const response = await worker.fetch(request({ text: SAMPLE1.replace('40 mg', '20 mg') }), env);
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).prepared, undefined);
+  assert.equal(calls.length, 2);
+});
+test('feedback rejects invalid ratings and stores valid feedback for the leadership view', async () => {
+  const stored = new Map();
+  const kv = { get: async k => stored.get(k)?.value, put: async (k,value,options) => stored.set(k,{ value,metadata:options?.metadata }), list: async () => ({ keys:[...stored].filter(([k])=>k.startsWith('fb:')).map(([name,v])=>({ name,metadata:v.metadata })), list_complete:true }) };
+  const feedback = body => new Request('https://app.test/api/feedback',{ method:'POST',body:JSON.stringify(body) });
+  for (const body of [null, {}, { rating:0 }, { rating:6 }, { rating:'bad' }, { rating:3.5 }]) assert.equal((await worker.fetch(feedback(body),{FEEDBACK:kv})).status,400);
+  assert.equal(stored.size,0);
+  const response = await worker.fetch(feedback({ rating:'4', sections:['translation','bogus'], comment:'[TEST] Clear language options.' }),{FEEDBACK:kv});
+  assert.equal(response.status,200);
+  const summary = await worker.fetch(new Request('https://app.test/api/feedback/summary'),{FEEDBACK:kv});
+  const body=await summary.json();
+  assert.equal(body.count,7); assert.equal(body.demoCount,6);
+  assert.ok(body.recent.some(x=>x.comment==='[TEST] Clear language options.'));
+  assert.ok(body.topFlags.every(x=>x[0]!=='bogus'));
 });

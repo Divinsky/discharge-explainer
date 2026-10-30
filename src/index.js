@@ -1,4 +1,6 @@
 import { HTML } from "./page.js";
+import { preparedSample } from "./demo.js";
+import { saveFeedback, loadAll, boardSummary, LEADERSHIP_HTML } from "./feedback.js";
 
 const SYSTEM = `You help patients and families understand hospital discharge instructions.
 Rewrite in short, familiar words. Expand abbreviations such as PO (by mouth), BID (twice a day), SOB (trouble breathing), syncope (fainting), and BMP (a blood test).
@@ -44,6 +46,7 @@ async function modelJSON(env, system, user, maxTokens) {
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${env.NEBIUS_API_KEY}` },
     signal: AbortSignal.timeout(60000),
     body: JSON.stringify({ model: env.NEBIUS_MODEL, temperature: 0, max_tokens: maxTokens,
+      ...(system === SYSTEM ? { chat_template_kwargs: { enable_thinking: false } } : {}),
       response_format: { type: "json_object" }, messages: [{ role: "system", content: system }, { role: "user", content: user }] }),
   });
   if (!res.ok) throw new Error("Model unavailable");
@@ -94,9 +97,22 @@ export default {
       if (body.language !== undefined && (typeof body.language !== "string" || (body.language !== "" && !Object.hasOwn(LANGS, body.language)))) return Response.json({ error: "Please select a supported translation language." }, { status: 400 });
       const text = body.text;
       if (text.trim().length < 20) return Response.json({ error: "Please paste discharge text." }, { status: 400 });
-      const out = await explain(env, text, body.language ?? (body.spanish ? "es" : ""));
+      const language = body.language ?? (body.spanish ? "es" : "");
+      const out = preparedSample(text, language) || await explain(env, text, language);
       return Response.json(out, { status: out.error ? 502 : 200 });
     }
+    if (url.pathname === "/api/feedback" && req.method === "POST") {
+      let body;
+      try { body = await req.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400 }); }
+      const out = await saveFeedback(env, body);
+      return Response.json(out, { status: out.error ? 400 : 200 });
+    }
+    if (url.pathname === "/api/feedback/summary") return Response.json(await loadAll(env));
+    if (url.pathname === "/api/leadership/summary" && req.method === "POST") {
+      const out = await boardSummary(env);
+      return Response.json(out, { status: out.error ? 502 : 200 });
+    }
+    if (url.pathname === "/leadership") return new Response(LEADERSHIP_HTML, { headers: { "Content-Type": "text/html; charset=utf-8" } });
     if (url.pathname === "/api/health") return Response.json({ ok: true, model: env.NEBIUS_MODEL, keyConfigured: !!env.NEBIUS_API_KEY });
     return new Response(HTML, { headers: { "Content-Type": "text/html; charset=utf-8" } });
   },

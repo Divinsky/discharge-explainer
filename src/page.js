@@ -1,8 +1,8 @@
-const SAMPLE1 = `DISCHARGE SUMMARY (SYNTHETIC SAMPLE - NOT A REAL PATIENT)
+export const SAMPLE1 = `DISCHARGE SUMMARY (SYNTHETIC SAMPLE - NOT A REAL PATIENT)
 Patient: Jane Example, 67F. Admitted 10/20 for acute decompensated heart failure (HFrEF, EF 30%). Diuresed with IV furosemide, net -4.2L. Discharge weight 172 lb.
 Discharge medications: Furosemide 40 mg PO BID. Metoprolol succinate 25 mg PO daily. Lisinopril 5 mg PO daily. Spironolactone 12.5 mg PO daily. Potassium chloride 20 mEq PO daily. Aspirin 81 mg PO daily. HOLD ibuprofen/NSAIDs.
 Instructions: 2 g sodium diet, fluid restriction 1.5 L/day. Daily weights each AM; call if gain >2 lb in 1 day or >5 lb in 1 week. BMP in 1 week. Follow up with cardiology (Dr. Sample) in 7 days. Return to ED for chest pain, SOB at rest, syncope.`;
-const SAMPLE2 = `DISCHARGE INSTRUCTIONS (SYNTHETIC SAMPLE - NOT A REAL PATIENT)
+export const SAMPLE2 = `DISCHARGE INSTRUCTIONS (SYNTHETIC SAMPLE - NOT A REAL PATIENT)
 Patient: Luis Demo, 54M. s/p laparoscopic cholecystectomy 10/27, uncomplicated.
 Meds: Oxycodone 5 mg PO q6h PRN severe pain (max 4/day), acetaminophen 650 mg PO q6h scheduled x5 days (max 3 g/day), docusate 100 mg PO BID while on opioids. Resume home metformin 500 mg BID with meals.
 Wound care: may shower in 48h, no tub/swimming x2 wks, steri-strips fall off on own. No lifting >10 lb x 2 wks. No driving while taking oxycodone.
@@ -26,14 +26,21 @@ footer{color:#666;font-size:.85rem;margin-top:24px}
 <p class="tag">Paste hospital discharge papers. Get plain-language steps, a medicine schedule, warning signs, and questions for your follow-up visit. Powered by NVIDIA Nemotron on Nebius Token Factory.</p>
 <p class="disc"><b>Not medical advice.</b> This tool only rewrites your papers in simpler words and can make mistakes. Always follow your doctor's and pharmacist's instructions. <b>In an emergency, call 911.</b> Do not paste real names or ID numbers.</p>
 <button onclick="s(1)">Load sample: heart failure</button><button onclick="s(2)">Load sample: gallbladder surgery</button>
+<p><small>Built-in samples use prepared, edited examples for instant language demos. Custom text is generated and checked live.</small></p>
 <label for="t">Discharge instructions</label><textarea id="t" maxlength="20000" placeholder="Paste discharge instructions here..."></textarea>
-<label for="lang">Also translate to:</label> <select id="lang"><option value="">English only</option><option value="es">Spanish (Español)</option><option value="zh">Mandarin (简体中文)</option><option value="ar">Arabic (العربية)</option><option value="ru">Russian (Русский)</option></select><br>
+<label for="lang">Also translate to:</label> <select id="lang" onchange="changeLanguage()"><option value="">English only</option><option value="es">Spanish (Español)</option><option value="zh">Mandarin (简体中文)</option><option value="ar">Arabic (العربية)</option><option value="ru">Russian (Русский)</option></select><br>
 <button id="go" onclick="explainPapers()">Explain my discharge papers</button> <span id="st" role="status" aria-live="polite"></span>
 <div id="out" aria-live="polite"></div>
-<footer>Built-in examples use synthetic data. Text is sent to Nebius for processing. This app has no database. Open source (MIT).</footer>
+<section id=fb style="display:none;background:#f4fbe8"><h2>How clear was this?</h2><p><small>Don't include names or health details.</small></p>
+<div id=stars>${[1,2,3,4,5].map(n=>`<label><input type=radio name=r value=${n}> ${"★".repeat(n)}</label> `).join("")}</div>
+<p>Anything confusing? ${["summary","steps","medications","warning signs","questions","translation"].map(s=>`<label><input type=checkbox name=sec value="${s}"> ${s}</label> `).join("")}</p>
+<textarea id=fc maxlength=300 style="min-height:60px" placeholder="Optional comment (no names or health details)"></textarea>
+<button id=send-feedback onclick=sendfb()>Submit feedback</button> <span id=fbs role=status></span> <a href="/leadership">Leadership summary &rarr;</a></section>
+<footer><a href="/leadership">Leadership summary (demo)</a> · Built-in examples use synthetic data. Custom text is sent to Nebius for processing. Feedback is saved for the leadership summary. Open source (MIT).</footer>
 <script>
 const S={1:${JSON.stringify(SAMPLE1)},2:${JSON.stringify(SAMPLE2)}};
 function s(n){t.value=S[n]}
+function changeLanguage(){if(Object.values(S).includes(t.value)&&out.innerHTML)explainPapers()}
 const e=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const arr=a=>Array.isArray(a)?a:[];
 const li=a=>"<ul>"+arr(a).map(x=>"<li>"+e(x)+"</li>").join("")+"</ul>";
@@ -54,5 +61,8 @@ h+="<section><h2>Medicine schedule</h2>"+medicines(x.medications)+"</section>";
 const rf=x.red_flags||{};h+="<section class=red><h2>Warning signs</h2>"+warnings(rf)+"</section>";
 h+="<section><h2>Questions to ask at your follow-up</h2>"+li(x.questions)+"</section>";
 if(x.translation&&labels[language]){const p=x.translation,L=language,T=labels[L];h+="<section lang="+L+(L==="ar"?" dir=rtl":"")+"><h2>"+T[0]+"</h2><p>"+e(p.summary)+"</p><h3>"+T[1]+"</h3>"+li(p.steps)+"<h3>"+T[2]+"</h3>"+medicines(p.medications,L)+"<h3>"+T[3]+"</h3>"+warnings(p.red_flags||{},L)+"<h3>"+T[4]+"</h3>"+li(p.questions)+"</section>"}
-out.innerHTML=h+"<p><small>Model: "+e(d.model)+" via Nebius Token Factory. Not medical advice.</small></p>"}catch{st.textContent="Unable to reach the explanation service. Please try again."}finally{button.disabled=false}}
+{const f=document.getElementById("fb"),fs=document.getElementById("fbs");if(f&&f.style)f.style.display="block";if(fs&&"textContent" in fs)fs.textContent="";}
+out.innerHTML=h+"<p><small>"+(d.prepared?"Prepared synthetic example (edited for demonstration). Live model: ":"Model: ")+e(d.model)+" via Nebius Token Factory. Not medical advice.</small></p>"}catch{st.textContent="Unable to reach the explanation service. Please try again."}finally{button.disabled=false}}
+async function sendfb(){const status=document.getElementById("fbs"),button=document.getElementById("send-feedback");const rating=document.querySelector("input[name=r]:checked");if(!rating){status.textContent="Please pick a rating.";return}if(button.disabled)return;button.disabled=true;
+try{const sections=[...document.querySelectorAll("input[name=sec]:checked")].map(x=>x.value);const response=await fetch("/api/feedback",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({rating:rating.value,sections,comment:document.getElementById("fc").value})});const d=await response.json();status.textContent=response.ok&&d.ok?"Thank you! Your feedback was saved.":(d.error||"Could not save feedback. Please try again.")}catch{status.textContent="Could not save feedback. Please try again."}finally{button.disabled=false}}
 </script></body></html>`;
