@@ -1,4 +1,4 @@
-# Devpost Submission Draft
+# Devpost Submission
 
 **Title:** Discharge Instructions Explainer
 **Tagline:** Turn confusing hospital discharge papers into clear steps, a medicine schedule, and warning signs — in plain English or Spanish, powered by NVIDIA Nemotron on Nebius.
@@ -34,6 +34,9 @@ Two synthetic sample discharges (heart failure, gallbladder surgery) are built i
 - An end-to-end, deployable app built in hours with a tiny, auditable codebase.
 - Bilingual output for one of the largest underserved patient groups in the US.
 - Privacy by design: stateless, no storage, synthetic-only samples.
+
+## Results
+Tested end to end with both synthetic samples on Nemotron 3 Super via Nebius Token Factory: ~11 s for an English explanation and ~16 s with Spanish, with valid structured JSON (summary, steps, medication table, 911 vs. doctor red flags, follow-up questions). Example output: `sample-output.json` in the repo.
 
 ## What we learned
 Open models like Nemotron, served through an OpenAI-compatible API, make it trivial to swap model sizes (Nano for speed, Super for quality) without code changes.

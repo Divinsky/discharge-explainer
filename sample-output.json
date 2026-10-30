@@ -1,0 +1,240 @@
+{
+  "gallbladder_en": {
+    "latency_ms": 7685,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "result": {
+      "summary": "Luis had an uncomplicated laparoscopic gallbladder removal. He should take his prescribed medicines, care for his incision, avoid heavy lifting and driving while on oxycodone, and see his surgeon in two weeks. Watch for fever, worsening wound redness or drainage, jaundice, ongoing nausea/vomiting, or inability to keep fluids down and call his doctor if any occur.",
+      "steps": [
+        "Take oxycodone 5 mg by mouth every 6 hours as needed for severe pain, not more than 4 doses per day.",
+        "Take acetaminophen 650 mg by mouth every 6 hours on a schedule for up to 5 days; do not exceed 3 grams total per day from all sources.",
+        "Take docusate 100 mg by mouth twice daily only while you are using opioids to prevent constipation.",
+        "Resume your home metformin 500 mg by mouth twice daily with meals.",
+        "You may shower after 48 hours; keep the incision dry and do not soak in a tub or swim for 2 weeks.",
+        "Steri‑strips will fall off on their own; do not pull them off.",
+        "Do not lift anything heavier than 10 pounds for 2 weeks.",
+        "Do not drive while you are taking oxycodone because it can cause drowsiness.",
+        "Attend your follow‑up appointment with the general surgery clinic in about 2 weeks.",
+        "Check your temperature daily; call your doctor if you have a fever over 101.5°F, increasing redness or pus from the wound, yellowing of skin or eyes, persistent nausea/vomiting, or you cannot keep liquids down."
+      ],
+      "medications": [
+        {
+          "name": "Oxycodone",
+          "dose": "5 mg",
+          "when": "Every 6 hours as needed for severe pain",
+          "purpose": "Treat severe pain",
+          "notes": "Maximum 4 doses per day; may cause drowsiness – do not drive while taking."
+        },
+        {
+          "name": "Acetaminophen",
+          "dose": "650 mg",
+          "when": "Every 6 hours on a schedule for up to 5 days",
+          "purpose": "Help control pain and fever",
+          "notes": "Do not exceed 3 grams total per day from all sources (including other medicines that contain acetaminophen)."
+        },
+        {
+          "name": "Docusate",
+          "dose": "100 mg",
+          "when": "Twice daily while on opioids",
+          "purpose": "Prevent constipation caused by opioids",
+          "notes": "Only take while you are using oxycodone or other opioids."
+        },
+        {
+          "name": "Metformin",
+          "dose": "500 mg",
+          "when": "Twice daily with meals",
+          "purpose": "Manage diabetes",
+          "notes": "Resume your home dose; take with breakfast and dinner."
+        }
+      ],
+      "red_flags": {
+        "call_911": [],
+        "call_doctor": [
+          "Temperature over 101.5°F (38.6°C)",
+          "Increasing redness, warmth, or pus/drainage from the incision",
+          "Yellowing of the skin or eyes (jaundice)",
+          "Persistent nausea or vomiting",
+          "Unable to keep liquids down"
+        ]
+      },
+      "questions": [
+        "When can I safely return to my usual activities and exercise?",
+        "What should I do if my pain is not controlled by the prescribed medicines?",
+        "How should I care for my incision if the steri‑strips fall off early?",
+        "Are there any foods or drinks I should avoid while recovering?"
+      ],
+      "spanish": null
+    }
+  },
+  "heart_failure_en_es": {
+    "latency_ms": 11396,
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "result": {
+      "summary": "Jane was treated for worsening heart failure and is now going home. She will take several heart medicines, follow a low‑salt and fluid‑restricted diet, weigh herself each morning, and watch for rapid weight gain. She needs a blood test in one week and a cardiology visit in seven days, and should go to the emergency department if she gets chest pain, severe shortness of breath at rest, or faints.",
+      "steps": [
+        "Take furosemide 40 mg by mouth twice daily.",
+        "Take metoprolol succinate 25 mg by mouth once daily.",
+        "Take lisinopril 5 mg by mouth once daily.",
+        "Take spironolactone 12.5 mg by mouth once daily.",
+        "Take potassium chloride 20 mEq by mouth once daily.",
+        "Take aspirin 81 mg by mouth once daily.",
+        "Do not take ibuprofen or other NSAIDs unless your doctor says it’s okay.",
+        "Limit sodium (salt) to no more than 2 grams per day.",
+        "Limit total fluids to 1.5 liters per day.",
+        "Weigh yourself every morning after using the bathroom and before eating; write down the number.",
+        "Call your doctor if you gain more than 2 pounds in one day or more than 5 pounds in one week.",
+        "Have a basic metabolic panel (blood test) in one week.",
+        "Keep your cardiology appointment with Dr. Sample in seven days.",
+        "Go to the nearest emergency department right away if you have chest pain, shortness of breath while at rest, or you faint."
+      ],
+      "medications": [
+        {
+          "name": "Furosemide",
+          "dose": "40 mg",
+          "when": "PO BID (twice daily)",
+          "purpose": "Help remove extra fluid",
+          "notes": ""
+        },
+        {
+          "name": "Metoprolol succinate",
+          "dose": "25 mg",
+          "when": "PO daily",
+          "purpose": "Slow heart rate and lower blood pressure",
+          "notes": ""
+        },
+        {
+          "name": "Lisinopril",
+          "dose": "5 mg",
+          "when": "PO daily",
+          "purpose": "Relax blood vessels and reduce workload on heart",
+          "notes": ""
+        },
+        {
+          "name": "Spironolactone",
+          "dose": "12.5 mg",
+          "when": "PO daily",
+          "purpose": "Keep potassium from dropping too low and reduce fluid",
+          "notes": ""
+        },
+        {
+          "name": "Potassium chloride",
+          "dose": "20 mEq",
+          "when": "PO daily",
+          "purpose": "Replace potassium lost by furosemide",
+          "notes": ""
+        },
+        {
+          "name": "Aspirin",
+          "dose": "81 mg",
+          "when": "PO daily",
+          "purpose": "Low‑dose aspirin for heart protection",
+          "notes": ""
+        }
+      ],
+      "red_flags": {
+        "call_911": [
+          "Chest pain",
+          "Shortness of breath at rest",
+          "Fainting (syncope)"
+        ],
+        "call_doctor": [
+          "Weight gain >2 lb in one day",
+          "Weight gain >5 lb in one week",
+          "New or worsening swelling of legs/feet",
+          "Increased shortness of breath with activity",
+          "Feeling dizzy or light‑headed"
+        ]
+      },
+      "questions": [
+        "What side effects should I watch for with these medicines?",
+        "When should I call if my blood pressure feels too low or too high?",
+        "How will I know if my heart failure is getting worse?",
+        "Are there any activities or exercises I should avoid?",
+        "Who do I contact if I have questions after hours?"
+      ],
+      "spanish": {
+        "summary": "Jane fue tratada por un empeoramiento de la insuficiencia cardíaca y ahora está lista para irse a casa. Tomará varios medicamentos para el corazón, seguirá una dieta baja en sal y con restricción de líquidos, se pesará cada mañana y estará atenta a un aumento rápido de peso. Necesita un análisis de sangre en una semana y una visita al cardiólogo en siete días, y debe ir al departamento de emergencias si tiene dolor en el pecho, dificultad severa para respirar en reposo o se desmaya.",
+        "steps": [
+          "Tome furosemida 40 mg por vía oral dos veces al día.",
+          "Tome succinato de metoprolol 25 mg por vía oral una vez al día.",
+          "Tome lisinopril 5 mg por vía oral una vez al día.",
+          "Tome espironolactona 12.5 mg por vía oral una vez al día.",
+          "Tome cloruro de potasio 20 mEq por vía oral una vez al día.",
+          "Tome aspirina 81 mg por vía oral una vez al día.",
+          "No tome ibuprofeno ni otros AINE a menos que su médico lo indique.",
+          "Limite el sodio (sal) a no más de 2 gramos por día.",
+          "Limite los líquidos totales a 1.5 litros por día.",
+          "Pésese cada mañana después de ir al baño y antes de comer; anote el número.",
+          "Llame a su médico si gana más de 2 libras en un día o más de 5 libras en una semana.",
+          "Hágase un panel metabólico básico (análisis de sangre) en una semana.",
+          "Mantenga su cita con el cardiólogo, el Dr. Sample, en siete días.",
+          "Vaya de inmediato al departamento de emergencias más cercano si tiene dolor en el pecho, dificultad para respirar en reposo o se desmaya."
+        ],
+        "medications": [
+          {
+            "name": "Furosemida",
+            "dose": "40 mg",
+            "when": "VO dos veces al día",
+            "purpose": "Ayudar a eliminar el líquido extra",
+            "notes": ""
+          },
+          {
+            "name": "Succinato de metoprolol",
+            "dose": "25 mg",
+            "when": "VO una vez al día",
+            "purpose": "Ralentizar el ritmo cardíaco y bajar la presión arterial",
+            "notes": ""
+          },
+          {
+            "name": "Lisinopril",
+            "dose": "5 mg",
+            "when": "VO una vez al día",
+            "purpose": "Relajar los vasos sanguíneos y reducir la carga del corazón",
+            "notes": ""
+          },
+          {
+            "name": "Espironolactona",
+            "dose": "12.5 mg",
+            "when": "VO una vez al día",
+            "purpose": "Evitar que el potasio baje demasiado y reducir líquido",
+            "notes": ""
+          },
+          {
+            "name": "Cloruro de potasio",
+            "dose": "20 mEq",
+            "when": "VO una vez al día",
+            "purpose": "Reponer el potasio perdido por la furosemida",
+            "notes": ""
+          },
+          {
+            "name": "Aspirina",
+            "dose": "81 mg",
+            "when": "VO una vez al día",
+            "purpose": "Aspirina de baja dosis para protección del corazón",
+            "notes": ""
+          }
+        ],
+        "red_flags": {
+          "llamar_911": [
+            "Dolor en el pecho",
+            "Falta de aire en reposo",
+            "Desmayo (síncope)"
+          ],
+          "llamar_al_doctor": [
+            "Aumento de peso >2 libras en un día",
+            "Aumento de peso >5 libras en una semana",
+            "Nuevo o empeoramiento de hinchazón en piernas/pies",
+            "Aumento de falta de aire con actividad",
+            "Sensación de mareo o aturdimiento"
+          ]
+        },
+        "questions": [
+          "¿Qué efectos secundarios debo observar con estos medicamentos?",
+          "¿Cuándo debo llamar si siento que mi presión arterial está muy baja o muy alta?",
+          "¿Cómo sabré si mi insuficiencia cardíaca está empeorando?",
+          "¿Hay actividades o ejercicios que deba evitar?",
+          "¿A quién contacto si tengo preguntas fuera del horario de atención?"
+        ]
+      }
+    }
+  }
+}

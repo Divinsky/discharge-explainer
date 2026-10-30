@@ -35,13 +35,14 @@ footer{color:#666;font-size:.85rem;margin-top:24px}
 const S={1:${JSON.stringify(SAMPLE1)},2:${JSON.stringify(SAMPLE2)}};
 function s(n){t.value=S[n]}
 const e=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const li=a=>"<ul>"+(a||[]).map(x=>"<li>"+e(x)+"</li>").join("")+"</ul>";
+const arr=a=>Array.isArray(a)?a:(a&&typeof a==="object"?Object.values(a).flat():(a?[a]:[]));
+const li=a=>"<ul>"+arr(a).map(x=>"<li>"+e(x)+"</li>").join("")+"</ul>";
 async function go(){st.textContent="Reading your papers... (can take ~20-60s)";out.innerHTML="";
 try{const r=await fetch("/api/explain",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:t.value,spanish:es.checked})});
 const d=await r.json();st.textContent="";if(d.error){out.innerHTML="<p class=red>"+e(d.error)+"</p>";return}
 if(!d.result){out.innerHTML="<pre>"+e(d.raw)+"</pre>";return}const x=d.result;
-let h="<section><h2>In short</h2><p>"+e(x.summary)+"</p></section><section><h2>What to do at home</h2><ol>"+(x.steps||[]).map(v=>"<li>"+e(v)+"</li>").join("")+"</ol></section>";
-h+="<section><h2>Medicine schedule</h2><table><tr><th>Medicine</th><th>Dose</th><th>When</th><th>What it's for</th><th>Notes</th></tr>"+(x.medications||[]).map(m=>"<tr><td>"+e(m.name)+"</td><td>"+e(m.dose)+"</td><td>"+e(m.when)+"</td><td>"+e(m.purpose)+"</td><td>"+e(m.notes)+"</td></tr>").join("")+"</table></section>";
+let h="<section><h2>In short</h2><p>"+e(x.summary)+"</p></section><section><h2>What to do at home</h2><ol>"+arr(x.steps).map(v=>"<li>"+e(v)+"</li>").join("")+"</ol></section>";
+h+="<section><h2>Medicine schedule</h2><table><tr><th>Medicine</th><th>Dose</th><th>When</th><th>What it's for</th><th>Notes</th></tr>"+arr(x.medications).map(m=>"<tr><td>"+e(m.name)+"</td><td>"+e(m.dose)+"</td><td>"+e(m.when)+"</td><td>"+e(m.purpose)+"</td><td>"+e(m.notes)+"</td></tr>").join("")+"</table></section>";
 const rf=x.red_flags||{};h+="<section class=red><h2>Call 911 if</h2>"+li(rf.call_911)+"<h2>Call your doctor if</h2>"+li(rf.call_doctor)+"</section>";
 h+="<section><h2>Questions to ask at your follow-up</h2>"+li(x.questions)+"</section>";
 if(x.spanish){const p=x.spanish;h+="<section lang=es><h2>En español</h2><p>"+e(p.summary)+"</p><h3>Qué hacer</h3>"+li(p.steps)+"<h3>Señales de alarma</h3>"+li(p.red_flags)+"<h3>Preguntas</h3>"+li(p.questions)+"</section>"}
