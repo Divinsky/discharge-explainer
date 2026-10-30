@@ -11,16 +11,16 @@ I'm Ira Divinsky, founder of IntelliGene AI. I've spent about 20 years in federa
 
 ## What it does
 Paste discharge papers and get:
-- A short plain-language summary and numbered home-care steps (~6th-grade reading level)
+- A short plain-language summary and numbered home-care steps (reading level has not been formally measured)
 - A medication schedule table (name, dose, when, what it's for, notes)
 - Red-flag warning signs split into "Call 911" vs. "Call your doctor"
 - Questions to ask at the follow-up visit
 - Optional Spanish translation
-Two synthetic sample discharges (heart failure, gallbladder surgery) are built in. A prominent "not medical advice" disclaimer is always shown, and nothing is stored.
+Two synthetic sample discharges (heart failure, gallbladder surgery) are built in. A prominent "not medical advice" disclaimer is always shown. The app has no database and does not deliberately persist input; text is sent to Nebius, whose retention practices are separate.
 
 ## How we built it
 - **NVIDIA Nemotron 3 Super (`nvidia/nemotron-3-super-120b-a12b`)** — open model doing the rewriting, structuring, and translation.
-- **Nebius Token Factory** — OpenAI-compatible inference API serving Nemotron; we use JSON-mode output with a strict system prompt (no new advice, no dose changes, "ask your care team" when unclear).
+- **Nebius Token Factory** — OpenAI-compatible inference API serving Nemotron; JSON-mode output uses a source-only prompt, runtime structure checks, and a separate model pass to check the explanation against the papers. Failed checks withhold the explanation. This reduces risk but does not guarantee correctness.
 - **Cloudflare Workers** — a single Worker serves the HTML UI and the `/api/explain` endpoint; the Nebius key is a Worker secret, never exposed to the browser.
 - Plain HTML/JS front end, no framework, no database.
 
@@ -33,10 +33,10 @@ Two synthetic sample discharges (heart failure, gallbladder surgery) are built i
 ## Accomplishments that we're proud of
 - An end-to-end, deployable app built in hours with a tiny, auditable codebase.
 - Bilingual output for one of the largest underserved patient groups in the US.
-- Privacy by design: stateless, no storage, synthetic-only samples.
+- Stateless app with no database and synthetic-only built-in samples; input is processed by Nebius.
 
 ## Results
-Tested end to end with both synthetic samples on Nemotron 3 Super via Nebius Token Factory: ~11 s for an English explanation and ~16 s with Spanish, with valid structured JSON (summary, steps, medication table, 911 vs. doctor red flags, follow-up questions). Example output: `sample-output.json` in the repo.
+Live API testing with both synthetic samples returned structured explanations. Before adding the source-checking pass, one retest took about 10 seconds for English and 20 seconds with Spanish. The current version adds a second inference call, so latency must be measured again and is not guaranteed. Spanish includes medication schedules and separate 911/doctor warnings. Historical output in `sample-output.json` predates these safeguards and is not a correctness benchmark.
 
 ## What we learned
 Open models like Nemotron, served through an OpenAI-compatible API, make it trivial to swap model sizes (Nano for speed, Super for quality) without code changes.
@@ -62,4 +62,4 @@ NVIDIA Nemotron 3 Super, Nebius Token Factory, Cloudflare Workers, Wrangler, Jav
 **0:40–1:30 — Demo 1.** Click "Load sample: heart failure", tick Spanish, click Explain. Walk through the plain summary, numbered steps, medication table (furosemide twice a day, etc.), red "Call 911 / Call your doctor" box (weight gain >2 lb), follow-up questions, then the Spanish section.
 **1:30–2:00 — Demo 2.** Load the gallbladder surgery sample; highlight pain-med schedule, "no driving on oxycodone", and fever warning.
 **2:00–2:40 — How it's built.** Show the Worker code: `/api/explain` calls Nebius Token Factory's OpenAI-compatible endpoint with model `nvidia/nemotron-3-super-120b-a12b`, JSON-mode output, key stored as a Cloudflare secret. Show `/api/health` and the architecture diagram in the README.
-**2:40–3:00 — Close.** "Open source under MIT, no data stored, built with NVIDIA Nemotron on Nebius. Next: photo upload, read-aloud, more languages."
+**2:40–3:00 — Close.** "Open source under MIT, no app database, built with NVIDIA Nemotron on Nebius. Next: photo upload, read-aloud, more languages."

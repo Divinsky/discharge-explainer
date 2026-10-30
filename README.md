@@ -1,6 +1,6 @@
 # Discharge Instructions Explainer
 
-Paste hospital discharge papers and get back, in plain language (~6th-grade reading level):
+Paste hospital discharge papers and get back, in plain language:
 - step-by-step home care instructions
 - a medication schedule table
 - red-flag warning signs (call 911 vs. call your doctor)
@@ -25,7 +25,14 @@ Browser (static HTML/JS served by Worker)
         └─ Cloudflare Worker (src/index.js)  -- NEBIUS_API_KEY stored as a Worker secret
              └─ Nebius Token Factory /v1/chat/completions  ->  NVIDIA Nemotron 3 Super
 ```
-No database, no storage: pasted text is never persisted.
+The app has no database and does not deliberately persist or log pasted text. Text is sent to Nebius for generation and source checking; provider retention and infrastructure logs are separate from application storage. Use synthetic data for the demo.
+
+## Source checking and limitations
+The prompt requires source-only instructions and expanded abbreviations. After validating the response structure, the Worker makes a separate model call to check every section against the papers. Failed checks, incomplete translations, and malformed responses withhold the explanation. Spanish includes a medication schedule and separate 911/doctor warning categories.
+
+This model-based check reduces risk; it does not guarantee factual or clinical correctness. Reading level has not been formally measured. Two inference calls increase latency; timing varies with input length and translation.
+
+Run `npm test` for input validation, rejection paths, and Spanish rendering checks. Run `npx wrangler deploy --dry-run` to verify Worker packaging. Automated tests use mocked inference and do not establish model reliability.
 
 ## Setup / run
 ```bash
