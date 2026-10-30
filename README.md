@@ -5,7 +5,7 @@ Paste hospital discharge papers and get back, in plain language (~6th-grade read
 - a medication schedule table
 - red-flag warning signs (call 911 vs. call your doctor)
 - questions to ask at your follow-up visit
-- optional Spanish translation
+- optional translation: Spanish, Mandarin (Simplified Chinese), Arabic (right-to-left), or Russian
 
 **Live demo:** https://discharge-explainer.irina-divinsky.workers.dev
 
@@ -16,7 +16,7 @@ Built for the **Nebius x NVIDIA Global AI Hackathon** (track: Best Apps and Agen
 ## How it uses Nebius + Nemotron
 The Cloudflare Worker calls **Nebius Token Factory** (OpenAI-compatible API) at
 `https://api.tokenfactory.us-central1.nebius.com/v1/chat/completions` with the open NVIDIA model
-**`nvidia/nemotron-3-super-120b-a12b`**. A strict system prompt asks for JSON output (summary, steps, medications, red flags, questions, Spanish) with no new advice and no dose changes. The model and base URL can be changed via `NEBIUS_MODEL` / `NEBIUS_BASE_URL` (e.g. `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B` for faster, cheaper calls).
+**`nvidia/nemotron-3-super-120b-a12b`**. A strict system prompt asks for JSON output (summary, steps, medications, red flags, questions, translation) with no new advice and no dose changes. The model and base URL can be changed via `NEBIUS_MODEL` / `NEBIUS_BASE_URL` (e.g. `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B` for faster, cheaper calls).
 
 ## Architecture
 ```

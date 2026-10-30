@@ -8,9 +8,11 @@ Return ONLY valid JSON with this shape:
  "medications":[{"name":"","dose":"","when":"","purpose":"","notes":""}],
  "red_flags":{"call_911":["..."],"call_doctor":["..."]},
  "questions":["question to ask at follow-up", ...],
- "spanish":null or {"summary":"","steps":[],"red_flags":[],"questions":[]}}`;
+ "translation":null or {"language":"","summary":"","steps":[],"red_flags":[],"questions":[]}}
+When a translation language is requested, translate summary, steps, red flags (as one list) and questions into that language using simple everyday words; keep medicine names and numbers unchanged.`;
 
-async function explain(env, text, spanish) {
+const LANGS = { es: "Spanish", zh: "Mandarin Chinese (Simplified Chinese characters)", ar: "Arabic", ru: "Russian" };
+async function explain(env, text, lang) {
   if (!env.NEBIUS_API_KEY) return { error: "Server is missing NEBIUS_API_KEY. Set it with: wrangler secret put NEBIUS_API_KEY" };
   const res = await fetch(`${env.NEBIUS_BASE_URL}/chat/completions`, {
     method: "POST",
@@ -22,7 +24,7 @@ async function explain(env, text, spanish) {
       response_format: { type: "json_object" },
       messages: [
         { role: "system", content: SYSTEM },
-        { role: "user", content: `Include Spanish translation: ${spanish ? "yes" : "no (set spanish to null)"}.\n\nDISCHARGE PAPERS:\n${text}` },
+        { role: "user", content: `Translation language: ${LANGS[lang] ? LANGS[lang] : "none (set translation to null)"}.\n\nDISCHARGE PAPERS:\n${text}` },
       ],
     }),
   });
@@ -43,7 +45,8 @@ export default {
       try { body = await req.json(); } catch { return Response.json({ error: "Invalid JSON" }, { status: 400 }); }
       const text = String(body.text || "").slice(0, 20000);
       if (text.trim().length < 20) return Response.json({ error: "Please paste discharge text." }, { status: 400 });
-      const out = await explain(env, text, !!body.spanish);
+      const lang = body.language || (body.spanish ? "es" : "");
+      const out = await explain(env, text, lang);
       return Response.json(out, { status: out.error ? 502 : 200 });
     }
     if (url.pathname === "/api/health") return Response.json({ ok: true, model: env.NEBIUS_MODEL, keyConfigured: !!env.NEBIUS_API_KEY });

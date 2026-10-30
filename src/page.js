@@ -27,7 +27,7 @@ footer{color:#666;font-size:.85rem;margin-top:24px}
 <p class="disc"><b>Not medical advice.</b> This tool only rewrites your papers in simpler words and can make mistakes. Always follow your doctor's and pharmacist's instructions. <b>In an emergency, call 911.</b> Do not paste real names or ID numbers.</p>
 <button onclick="s(1)">Load sample: heart failure</button><button onclick="s(2)">Load sample: gallbladder surgery</button>
 <textarea id="t" placeholder="Paste discharge instructions here..."></textarea>
-<label><input type="checkbox" id="es"> Also give me Spanish (Español)</label><br>
+<label>Also translate to: <select id="lang"><option value="">English only</option><option value="es">Spanish (Español)</option><option value="zh">Mandarin (简体中文)</option><option value="ar">Arabic (العربية)</option><option value="ru">Russian (Русский)</option></select></label><br>
 <button id="go" onclick="go()">Explain my discharge papers</button> <span id="st"></span>
 <div id="out"></div>
 <footer>Uses synthetic sample data only. Open source (MIT).</footer>
@@ -38,13 +38,13 @@ const e=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;
 const arr=a=>Array.isArray(a)?a:(a&&typeof a==="object"?Object.values(a).flat():(a?[a]:[]));
 const li=a=>"<ul>"+arr(a).map(x=>"<li>"+e(x)+"</li>").join("")+"</ul>";
 async function go(){st.textContent="Reading your papers... (can take ~20-60s)";out.innerHTML="";
-try{const r=await fetch("/api/explain",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:t.value,spanish:es.checked})});
+try{const r=await fetch("/api/explain",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:t.value,language:lang.value})});
 const d=await r.json();st.textContent="";if(d.error){out.innerHTML="<p class=red>"+e(d.error)+"</p>";return}
 if(!d.result){out.innerHTML="<pre>"+e(d.raw)+"</pre>";return}const x=d.result;
 let h="<section><h2>In short</h2><p>"+e(x.summary)+"</p></section><section><h2>What to do at home</h2><ol>"+arr(x.steps).map(v=>"<li>"+e(v)+"</li>").join("")+"</ol></section>";
 h+="<section><h2>Medicine schedule</h2><table><tr><th>Medicine</th><th>Dose</th><th>When</th><th>What it's for</th><th>Notes</th></tr>"+arr(x.medications).map(m=>"<tr><td>"+e(m.name)+"</td><td>"+e(m.dose)+"</td><td>"+e(m.when)+"</td><td>"+e(m.purpose)+"</td><td>"+e(m.notes)+"</td></tr>").join("")+"</table></section>";
 const rf=x.red_flags||{};h+="<section class=red><h2>Call 911 if</h2>"+li(rf.call_911)+"<h2>Call your doctor if</h2>"+li(rf.call_doctor)+"</section>";
 h+="<section><h2>Questions to ask at your follow-up</h2>"+li(x.questions)+"</section>";
-if(x.spanish){const p=x.spanish;h+="<section lang=es><h2>En español</h2><p>"+e(p.summary)+"</p><h3>Qué hacer</h3>"+li(p.steps)+"<h3>Señales de alarma</h3>"+li(p.red_flags)+"<h3>Preguntas</h3>"+li(p.questions)+"</section>"}
+const p=x.translation||x.spanish;const L=lang.value;if(p&&L){const T={es:["En español","Qué hacer","Señales de alarma","Preguntas"],zh:["中文说明","在家要做的事","危险信号","复诊时要问的问题"],ar:["بالعربية","ما يجب فعله في المنزل","علامات الخطر","أسئلة للمتابعة"],ru:["На русском","Что делать дома","Тревожные признаки","Вопросы на приёме"]}[L]||["Translation","Steps","Warning signs","Questions"];h+="<section lang="+L+(L==="ar"?" dir=rtl style=text-align:right":"")+"><h2>"+T[0]+"</h2><p>"+e(p.summary)+"</p><h3>"+T[1]+"</h3>"+li(p.steps)+"<h3>"+T[2]+"</h3>"+li(p.red_flags)+"<h3>"+T[3]+"</h3>"+li(p.questions)+"</section>"}
 out.innerHTML=h+"<p><small>Model: "+e(d.model)+" via Nebius Token Factory. Not medical advice.</small></p>"}catch(err){st.textContent="Error: "+err}}
 </script></body></html>`;
