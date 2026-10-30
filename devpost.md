@@ -4,6 +4,7 @@
 **Tagline:** Turn confusing hospital discharge papers into clear steps, a medicine schedule, and warning signs — in plain English, Spanish, Mandarin, Arabic, or Russian, powered by NVIDIA Nemotron on Nebius.
 **Track:** Best Apps and Agents
 **Live demo:** https://discharge-explainer.irina-divinsky.workers.dev
+**Leadership summary (demo):** https://discharge-explainer.irina-divinsky.workers.dev/leadership
 **Repo:** https://github.com/Divinsky/discharge-explainer
 
 ## Inspiration
@@ -16,11 +17,14 @@ Paste discharge papers and get:
 - Red-flag warning signs split into "Call 911" vs. "Call your doctor"
 - Questions to ask at the follow-up visit
 - Optional translation via a language dropdown: Spanish, Mandarin (Simplified Chinese), Arabic (right-to-left), or Russian
+- **Patient feedback loop:** after each explanation, patients rate clarity (1–5 stars), flag confusing sections and add an optional comment — no names or health details collected. A **Leadership summary** page (https://discharge-explainer.irina-divinsky.workers.dev/leadership) shows average clarity, response count, most-flagged sections and recent comments, and a "Generate board summary" button has Nemotron write a plain-language briefing for hospital leaders and board members (what confuses patients + top 3 fixes). Seeded entries are labeled demo data.
+
 Two synthetic sample discharges (heart failure, gallbladder surgery) are built in. A prominent "not medical advice" disclaimer is always shown. The app has no database and does not deliberately persist input; text is sent to Nebius, whose retention practices are separate.
 
 ## How we built it
 - **NVIDIA Nemotron 3 Super (`nvidia/nemotron-3-super-120b-a12b`)** — open model doing the rewriting, structuring, and translation.
-- **Nebius Token Factory** — OpenAI-compatible inference API serving Nemotron; JSON-mode output uses a source-only prompt, runtime structure checks, and a separate model pass to check the explanation against the papers. Failed checks withhold the explanation. This reduces risk but does not guarantee correctness.
+- **Nebius Token Factory** — OpenAI-compatible inference API serving Nemotron; JSON-mode output with a strict source-only system prompt (no new advice, no dose changes, "ask your care team" when unclear).
+- **Cloudflare Workers KV** (free tier) — stores anonymous feedback.
 - **Cloudflare Workers** — a single Worker serves the HTML UI and the `/api/explain` endpoint; the Nebius key is a Worker secret, never exposed to the browser.
 - Plain HTML/JS front end, no framework, no database.
 
@@ -45,11 +49,11 @@ Open models like Nemotron, served through an OpenAI-compatible API, make it triv
 - Read-aloud (text-to-speech) and more languages
 - Upload a photo/PDF of discharge papers (vision model OCR)
 - Printable one-page "fridge sheet" and calendar/reminder export for medications
-- Patient feedback loop: after using the app, patients and families rate how clear their instructions were and flag confusing parts, and the tool rolls this up into a short summary for hospital leadership and board members, so the voice of the customer reaches the people who set priorities
+- A second-pass model check that verifies every section against the original papers
 - Evaluation against readability scores and clinician review; pilot with a health system's patient-education team
 
 ## Built with
-NVIDIA Nemotron 3 Super, Nebius Token Factory, Cloudflare Workers, Wrangler, JavaScript, HTML/CSS, OpenAI-compatible Chat Completions API
+NVIDIA Nemotron 3 Super, Nebius Token Factory, Cloudflare Workers, Cloudflare Workers KV, Wrangler, JavaScript, HTML/CSS, OpenAI-compatible Chat Completions API
 
 ## Feedback on Nebius / NVIDIA tools
 - The OpenAI-compatible endpoint made integration a drop-in change; one base URL + model ID.
@@ -60,6 +64,7 @@ NVIDIA Nemotron 3 Super, Nebius Token Factory, Cloudflare Workers, Wrangler, Jav
 **0:00–0:20 — Problem.** "Patients leave the hospital with papers like this." Show the synthetic heart-failure discharge text. "Jargon like 'PO BID' and '2 g sodium diet' is hard to follow, and misunderstandings lead to readmissions."
 **0:20–0:40 — App intro.** Show the live URL. Point out the not-medical-advice banner and the sample buttons.
 **0:40–1:30 — Demo 1.** Click "Load sample: heart failure", select Spanish, click Explain. Walk through the summary, steps, medication table, separate 911/doctor warnings, and Spanish section. Mention Mandarin, Arabic (right-to-left), and Russian. To show another language, select it and click Explain again.
-**1:30–2:00 — Demo 2.** Load the gallbladder surgery sample; highlight pain-med schedule, "no driving on oxycodone", and fever warning.
-**2:00–2:40 — How it's built.** Show the Worker code: `/api/explain` calls Nebius Token Factory's OpenAI-compatible endpoint with model `nvidia/nemotron-3-super-120b-a12b`, JSON-mode output, key stored as a Cloudflare secret. Show `/api/health` and the architecture diagram in the README.
-**2:40–3:00 — Close.** "Open source under MIT, no app database, built with NVIDIA Nemotron on Nebius. Next: photo upload, read-aloud, more languages."
+**1:30–1:50 — Demo 2.** Load the gallbladder surgery sample; highlight pain-med schedule, "no driving on oxycodone", and fever warning.
+**1:50–2:20 — Feedback loop.** Give 2 stars, flag "medications", submit. Open /leadership: average score, most-flagged sections, recent comments (labeled demo data). Click "Generate board summary" — Nemotron writes a briefing with the top 3 fixes.
+**2:20–2:45 — How it's built.** Show the Worker code: `/api/explain` calls Nebius Token Factory's OpenAI-compatible endpoint with model `nvidia/nemotron-3-super-120b-a12b`, JSON-mode output, key stored as a Cloudflare secret. Show `/api/health` and the architecture diagram in the README.
+**2:45–3:00 — Close.** "Open source under MIT, no app database, built with NVIDIA Nemotron on Nebius. Next: photo upload, read-aloud, more languages."
