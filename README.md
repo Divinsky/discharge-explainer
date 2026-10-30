@@ -5,6 +5,7 @@ Paste hospital discharge papers and get back, in plain language:
 - a medication schedule table
 - red-flag warning signs (call 911 vs. call your doctor)
 - questions to ask at your follow-up visit
+- a patient feedback loop (1–5 rating, flag confusing sections, optional comment) and a `/leadership` page that aggregates feedback and has Nemotron write a board briefing (seeded entries are demo data)
 - optional translation: Spanish, Mandarin (Simplified Chinese), Arabic (right-to-left), or Russian
 
 **Live demo:** https://discharge-explainer.irina-divinsky.workers.dev
@@ -34,12 +35,10 @@ Custom input still runs live generation and verification. Rewriting disables Nem
 
 The feedback form and `/leadership` page use the existing `FEEDBACK` KV binding. The dashboard labels its seeded synthetic data.
 
-## Source checking and limitations
-The prompt requires source-only instructions and expanded abbreviations. After validating the response structure, the Worker makes a separate model call to check every section against the papers. Failed checks, incomplete translations, and malformed responses withhold the explanation. Every translation includes a medication schedule and separate 911/doctor warning categories.
+## Limitations
+Custom output is checked against the source in a separate model call, with one repair attempt. This reduces risk but does not guarantee factual or clinical correctness. Some requests are withheld after failed checks, and latency varies. Reading level has not been formally measured. Prepared examples have editorial corrections and have not had clinical or professional translation review.
 
-One repair attempt is allowed for failed structure/source checks, followed by verification again. Unverified drafts are never displayed. This model-based check reduces risk; it does not guarantee factual or clinical correctness. Reading level has not been formally measured. Generation and verification (plus repair when needed) increase latency; timing varies with input length and translation.
-
-Run `npm test` for input validation, rejection paths, and Spanish rendering checks. Run `npx wrangler deploy --dry-run` to verify Worker packaging. Automated tests use mocked inference and do not establish model reliability.
+Run `npm test` for API, feedback, translation, and sample checks. `npx wrangler deploy --dry-run` checks Worker packaging.
 
 ## Setup / run
 ```bash
@@ -54,7 +53,6 @@ Get a key at https://tokenfactory.nebius.com (hackathon promo credits available)
 
 ## Roadmap
 - Read-aloud, more languages, photo/PDF upload, printable medication sheet
-- Patient feedback loop: patients rate clarity and flag confusing parts; summaries go to hospital leadership
 
 ## License
 MIT — see [LICENSE](LICENSE).
