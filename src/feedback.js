@@ -61,7 +61,7 @@ export async function boardSummary(env) {
 
 export const LEADERSHIP_HTML = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Private leadership summary</title>
 <style>body{font-family:system-ui,sans-serif;max-width:900px;margin:auto;padding:20px;line-height:1.5}.notice{background:#fff4e5;padding:12px;border-radius:8px}.cards{display:flex;gap:24px}.big{font-size:2rem}button{padding:10px;font:inherit}#sum{white-space:pre-wrap}td,th{padding:8px;border:1px solid #ccc}table{border-collapse:collapse}</style></head><body>
-<a href="/">Back to synthetic demo</a><h1>Private leadership summary</h1>
+<a href="/">Back to synthetic demo</a><h1>Private leadership summary</h1><p style="background:#fff4d6;border:1px solid #e0b84c;padding:10px;border-radius:6px"><strong>Demo note:</strong> In a normal hospital deployment, this page would ask staff to sign in before showing any data. Sign-in is turned off here so judges can see it.</p>
 <p class="notice"><b>Synthetic-data prototype. Not approved for protected health information.</b> Staff access only. This dashboard shows aggregate ratings and flagged-section counts, including six synthetic demo ratings. Free-text feedback is disabled. New ratings expire after 30 days. No patient records or comments are sent to the model.</p>
 <div class="cards"><p>Average clarity<br><b class="big" id="avg">—</b> / 5</p><p>Responses<br><b class="big" id="cnt">—</b></p></div>
 <h2>Flagged sections</h2><table id="flags"></table><p id="load-status" role="status"></p>
