@@ -1,10 +1,15 @@
 name = "discharge-explainer"
 main = "src/index.js"
 compatibility_date = "2026-10-01"
+keep_vars = true
+preview_urls = false
 
 [vars]
 NEBIUS_BASE_URL = "https://api.tokenfactory.us-central1.nebius.com/v1"
 NEBIUS_MODEL = "nvidia/nemotron-3-super-120b-a12b"
+ACCESS_TEAM_DOMAIN = "https://rough-base-f9a0.cloudflareaccess.com"
+ACCESS_AUD = "4f34d1f510b794d42de4169b894c8565e19ea9bd2eaeb428412600d8189524b6"
+# STAFF_EMAILS is configured on the Worker, not in public source.
 # Secret: wrangler secret put NEBIUS_API_KEY
 
 [[kv_namespaces]]

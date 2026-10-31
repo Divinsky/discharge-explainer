@@ -1,58 +1,53 @@
 # Discharge Instructions Explainer
 
-Paste hospital discharge papers and get back, in plain language:
-- step-by-step home care instructions
-- a medication schedule table
-- red-flag warning signs (call 911 vs. call your doctor)
-- questions to ask at your follow-up visit
-- a patient feedback loop (1–5 rating, flag confusing sections, optional comment) and a `/leadership` page that aggregates feedback and has Nemotron write a board briefing (seeded entries are demo data)
-- optional translation: Spanish, Mandarin (Simplified Chinese), Arabic (right-to-left), or Russian
+A synthetic-data demonstration built with NVIDIA Nemotron 3 Super, Nebius Token Factory, and Cloudflare Workers for the Nebius × NVIDIA hackathon.
 
-**Live demo:** https://discharge-explainer.irina-divinsky.workers.dev
+**Synthetic-data prototype. Not approved for protected health information. This is not a HIPAA-compliance claim or a clinical product.**
 
-Built for the **Nebius x NVIDIA Global AI Hackathon** (track: Best Apps and Agents).
+Live demo: https://discharge-explainer.irina-divinsky.workers.dev/
 
-> **Not medical advice.** This tool only rewrites existing instructions in simpler words and may make mistakes. Always follow your care team's instructions. In an emergency call 911. The included samples are fully synthetic; do not paste real patient identifiers.
+## What is available
 
-## How it uses Nebius + Nemotron
-The Cloudflare Worker calls **Nebius Token Factory** (OpenAI-compatible API) at
-`https://api.tokenfactory.us-central1.nebius.com/v1/chat/completions` with the open NVIDIA model
-**`nvidia/nemotron-3-super-120b-a12b`**. A strict system prompt asks for JSON output (summary, steps, medications, red flags, questions, translation) with no new advice and no dose changes. The model and base URL can be changed via `NEBIUS_MODEL` / `NEBIUS_BASE_URL` (e.g. `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B` for faster, cheaper calls).
+- Two immutable fictional discharge examples, in English, Spanish, Mandarin, Arabic, and Russian.
+- Prepared, editorially corrected summaries, home-care steps, medication tables, separate emergency/doctor warnings, and questions. These examples are labeled as prepared, not live inference; they have not had clinical or professional translation review.
+- Optional structured ratings and section flags for a displayed synthetic example. There is no comment box.
+- A private staff leadership dashboard and a Nemotron board briefing based only on aggregate counts.
 
-## Architecture
+## Privacy boundaries
+
+The browser sends a sample ID and language, not discharge text. The textarea is read-only. `/api/explain` accepts only the two sample IDs; older clients can send only the exact built-in sample text. Edited examples, arbitrary text, and extra fields are rejected without inference or storage. No flag can enable patient-record intake.
+
+New feedback accepts only enumerated fields: a 1–5 rating, allowlisted section flags, sample ID, and supported language. It is stored under `feedback:v2:*` in the existing KV namespace with a 30-day expiration. No names, patient IDs, comments, discharge papers, or generated patient explanations are stored. The API also enforces body-size and cross-origin checks.
+
+Legacy `fb:*` records from the hackathon remain in KV and are quarantined: the application never reads, displays, aggregates, or sends those records to Nebius. They have **not** been deleted or retroactively given expiration dates. Review and approve their disposition separately before a patient pilot.
+
+The staff dashboard exposes aggregate counts only, including six fixed synthetic demo ratings. It does not expose individual feedback records or comments. Board generation sends only these counts to Nebius. Provider retention, backups, contractual terms, and vendor product eligibility still require review.
+
+## Staff access
+
+Cloudflare Access protects `/leadership`, `/api/feedback/summary`, and `/api/leadership/summary`. The deployed policy allows only the owner's Cloudflare account email, requires MFA, and uses one-hour sessions. Public examples remain accessible.
+
+The Worker independently verifies Access JWT signatures, issuer, audience, expiry, token age, token type, and an explicit `STAFF_EMAILS` allowlist. Missing configuration, missing tokens, and invalid identities fail closed. Access configuration is documented in [docs/ACCESS_SETUP.md](docs/ACCESS_SETUP.md).
+
+Responses disable caching and framing and set referrer and browser-permission restrictions. Inline scripts use SHA-256 CSP hashes; inline event handlers are removed. Staff actions emit audit metadata containing an opaque staff subject and action, never tokens, request bodies, feedback, or health text. Central log retention/access policies remain an operational prerequisite for any patient deployment.
+
+## Setup and checks
+
+```sh
+npm ci
+npm test
+npx wrangler deploy --dry-run
+npm run dev
 ```
-Browser (static HTML/JS served by Worker)
-   └─ POST /api/explain {text, language}
-        └─ Cloudflare Worker (src/index.js)  -- NEBIUS_API_KEY stored as a Worker secret
-             └─ Nebius Token Factory /v1/chat/completions  ->  NVIDIA Nemotron 3 Super
-```
-The app does not deliberately persist pasted discharge text. Custom text is sent to Nebius for generation and source checking; provider retention and infrastructure logs are separate. Optional ratings, flagged sections, and comments are saved in Cloudflare KV for the public demo leadership page. Do not enter identifying or health details in feedback.
 
-## Recording demo
-The two unchanged synthetic samples have prepared, edited explanations in all five menu languages. These are served instantly and clearly labeled as prepared examples, not live inference. They are based on captured Nemotron output, with editorial corrections and translations; they have not had clinical or professional translation review. Changing a sample's text uses live inference. After displaying a sample, changing the language refreshes the prepared example automatically.
+The synthetic examples require no model key. The existing `NEBIUS_API_KEY` Worker secret is needed only for authenticated counts-only board generation. Local credentials belong in ignored `.dev.vars`, never source control. `STAFF_EMAILS` is configured on the deployed Worker; `keep_vars = true` preserves it during Wrangler deployments. Set your own team domain/audience/allowlist for another deployment. Never bypass JWT validation for local convenience.
 
-Custom input still runs live generation and verification. Rewriting disables Nemotron reasoning traces to reduce overhead; the separate source-checking pass remains enabled. See [NVIDIA's model card](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16) for reasoning-mode support.
+The tests cover all ten prepared examples, arbitrary-input rejection, body limits, strict feedback validation, expiration metadata, isolation from legacy records, signed/forged JWTs, private routes, counts-only model requests, CSP/security headers, RTL rendering, and hiding stale feedback. Authenticated unit tests use local test signing keys; a real owner's interactive Access/MFA sign-in must also be validated.
 
-The feedback form and `/leadership` page use the existing `FEEDBACK` KV binding. The dashboard labels its seeded synthetic data.
+## Before patient use
 
-## Limitations
-Custom output is checked against the source in a separate model call, with one repair attempt. This reduces risk but does not guarantee factual or clinical correctness. Some requests are withheld after failed checks, and latency varies. Reading level has not been formally measured. Prepared examples have editorial corrections and have not had clinical or professional translation review.
-
-Run `npm test` for API, feedback, translation, and sample checks. `npx wrangler deploy --dry-run` checks Worker packaging.
-
-## Setup / run
-```bash
-npm install
-cp .dev.vars.example .dev.vars   # put your Nebius Token Factory key here
-npm run dev                       # http://localhost:8787
-# deploy
-npx wrangler secret put NEBIUS_API_KEY
-npm run deploy
-```
-Get a key at https://tokenfactory.nebius.com (hackathon promo credits available). `GET /api/health` reports the model and whether a key is configured.
-
-## Roadmap
-- Read-aloud, more languages, photo/PDF upload, printable medication sheet
+See [docs/SECURITY_READINESS.md](docs/SECURITY_READINESS.md). Signed BAAs covering the actual products/endpoints, vendor retention/training terms, risk analysis, clinical evaluation, operational procedures, and a separately reviewed patient-storage design are outstanding. This implementation deliberately provides **no patient storage** while those requirements are unresolved.
 
 ## License
-MIT — see [LICENSE](LICENSE).
+
+MIT.

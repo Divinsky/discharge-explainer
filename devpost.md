@@ -1,5 +1,7 @@
 # Devpost Submission
 
+> **Historical hackathon description (October 30, 2026).** After the hackathon, the app was restricted to built-in synthetic samples, free-text feedback was removed, and leadership access was made private. The script and original feature descriptions below describe the earlier demonstration. See README.md and docs/SECURITY_READINESS.md for the current privacy boundaries. This prototype is not represented as HIPAA compliant.
+
 **Title:** Discharge Instructions Explainer
 **Tagline:** Turn confusing hospital discharge papers into clear steps, a medicine schedule, and warning signs — in plain English, Spanish, Mandarin, Arabic, or Russian, powered by NVIDIA Nemotron on Nebius.
 **Track:** Best Apps and Agents

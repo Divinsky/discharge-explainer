@@ -1,1 +1,1 @@
-{"name":"discharge-explainer","version":"1.0.0","private":true,"type":"module","license":"MIT","scripts":{"dev":"wrangler dev","deploy":"wrangler deploy","test":"node --test"},"devDependencies":{"wrangler":"^4"}}
+{"name":"discharge-explainer","version":"1.0.0","private":true,"type":"module","license":"MIT","scripts":{"dev":"wrangler dev","deploy":"wrangler deploy","test":"node --test"},"devDependencies":{"wrangler":"^4"},"dependencies":{"jose":"^6.2.14"}}

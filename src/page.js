@@ -23,24 +23,25 @@ section{border:1px solid #ddd;border-radius:8px;padding:10px 14px;margin:12px 0}
 footer{color:#666;font-size:.85rem;margin-top:24px}
 </style></head><body>
 <h1>Discharge Instructions Explainer</h1>
-<p class="tag">Paste hospital discharge papers. Get plain-language steps, a medicine schedule, warning signs, and questions for your follow-up visit. Powered by <b>NVIDIA Nemotron 3 Super</b>, served through <b>Nebius Token Factory</b>.</p>
-<p><small>NVIDIA provides the language model. Nebius provides the inference API for live explanations and leadership briefings.</small></p>
+<p class="tag">Explore synthetic discharge examples with plain-language steps, medication schedules, and warning signs. Built with <b>NVIDIA Nemotron 3 Super</b> and <b>Nebius Token Factory</b>.</p>
+<p class="disc"><b>Synthetic-data prototype. Not approved for protected health information.</b> Only the two built-in fictional examples are accepted. Custom patient documents and free-text comments are disabled.</p>
 <p class="disc"><b>Not medical advice.</b> This tool only rewrites your papers in simpler words and can make mistakes. Always follow your doctor's and pharmacist's instructions. <b>In an emergency, call 911.</b> Do not paste real names or ID numbers.</p>
-<button onclick="s(1)">Load sample: heart failure</button><button onclick="s(2)">Load sample: gallbladder surgery</button>
-<p><small>Built-in samples use prepared, edited examples for instant language demos. Custom text is generated and checked live.</small></p>
-<label for="t">Discharge instructions</label><textarea id="t" maxlength="20000" placeholder="Paste discharge instructions here..."></textarea>
-<label for="lang">Also translate to:</label> <select id="lang" onchange="changeLanguage()"><option value="">English only</option><option value="es">Spanish (Español)</option><option value="zh">Mandarin (简体中文)</option><option value="ar">Arabic (العربية)</option><option value="ru">Russian (Русский)</option></select><br>
-<button id="go" onclick="explainPapers()">Explain my discharge papers</button> <span id="st" role="status" aria-live="polite"></span>
+<button id="sample1">Load sample: heart failure</button><button id="sample2">Load sample: gallbladder surgery</button>
+<p><small>These are prepared, edited synthetic examples, not live inference or clinical guidance. Nebius receives only aggregate ratings when an authorized staff member generates a leadership briefing.</small></p>
+<label for="t">Synthetic discharge example (read-only)</label><textarea id="t" readonly placeholder="Choose one of the synthetic sample buttons above."></textarea>
+<label for="lang">Also translate to:</label> <select id="lang"><option value="">English only</option><option value="es">Spanish (Español)</option><option value="zh">Mandarin (简体中文)</option><option value="ar">Arabic (العربية)</option><option value="ru">Russian (Русский)</option></select><br>
+<button id="go">Explain synthetic example</button> <span id="st" role="status" aria-live="polite"></span>
 <div id="out" aria-live="polite"></div>
-<section id=fb style="display:none;background:#f4fbe8"><h2>How clear was this?</h2><p><small>Ratings, flagged sections, and comments are saved in Cloudflare KV and may appear on the public demo leadership page. Don't include names or health details.</small></p>
+<section id=fb style="display:none;background:#f4fbe8"><h2>How clear was this synthetic example?</h2><p><small>Optional ratings and listed section flags are saved for 30 days. Only authorized staff can see aggregates. No patient details or free-text comments are accepted.</small></p>
 <div id=stars>${[1,2,3,4,5].map(n=>`<label><input type=radio name=r value=${n}> ${"★".repeat(n)}</label> `).join("")}</div>
 <p>Anything confusing? ${["summary","steps","medications","warning signs","questions","translation"].map(s=>`<label><input type=checkbox name=sec value="${s}"> ${s}</label> `).join("")}</p>
-<textarea id=fc maxlength=300 style="min-height:60px" placeholder="Optional comment (no names or health details)"></textarea>
-<button id=send-feedback onclick=sendfb()>Submit feedback</button> <span id=fbs role=status></span> <a href="/leadership">Leadership summary &rarr;</a></section>
-<footer><a href="/leadership">Leadership summary (demo)</a> · Built-in examples use synthetic data. The app does not deliberately save discharge text. Custom text is sent to Nebius for processing; provider retention is separate. Optional feedback is stored in Cloudflare KV for the public demo leadership page. Open source (MIT).</footer>
+<button id=send-feedback>Submit synthetic-example rating</button> <span id=fbs role=status></span> <a href="/leadership">Staff leadership (sign-in) &rarr;</a></section>
+<footer><a href="/leadership">Staff leadership (sign-in)</a> · No patient-record storage is provided. New structured feedback expires after 30 days. Existing legacy comments are excluded from the app and model requests. Vendor agreements and a security/privacy assessment are required before real patient use. This prototype is not represented as HIPAA compliant. Open source (MIT).</footer>
 <script>
 const S={1:${JSON.stringify(SAMPLE1)},2:${JSON.stringify(SAMPLE2)}};
-function s(n){t.value=S[n]}
+let displayedSample=null;
+function hideFeedback(){displayedSample=null;document.getElementById('fb').style.display='none';document.getElementById('fbs').textContent='';document.querySelectorAll('input[name=r],input[name=sec]').forEach(x=>x.checked=false)}
+function s(n){t.value=S[n];out.innerHTML='';hideFeedback()}
 function changeLanguage(){if(Object.values(S).includes(t.value)&&out.innerHTML)explainPapers()}
 const e=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const arr=a=>Array.isArray(a)?a:[];
@@ -53,8 +54,8 @@ ar:["بالعربية","ما يجب فعله في المنزل","جدول الأ
 ru:["На русском","Что делать дома","Расписание лекарств","Тревожные признаки","Вопросы на приёме","Звоните 911, если","Позвоните врачу, если","Лекарство","Доза","Когда принимать","Для чего","Примечания"]};
 const medicines=(items,L="en")=>"<div class=table-wrap><table><caption>"+labels[L][2]+"</caption><tr>"+labels[L].slice(7).map(v=>"<th scope=col>"+v+"</th>").join("")+"</tr>"+arr(items).map(m=>"<tr>"+[m.name,m.dose,m.when,m.purpose,m.notes].map(v=>"<td>"+e(v)+"</td>").join("")+"</tr>").join("")+"</table></div>";
 const warnings=(rf,L="en")=>"<h3>"+labels[L][5]+"</h3>"+li(rf.call_911)+"<h3>"+labels[L][6]+"</h3>"+li(rf.call_doctor);
-async function explainPapers(){const button=document.getElementById("go");if(button.disabled)return;button.disabled=true;st.textContent="Reading and checking your papers... Response time varies.";out.innerHTML="";
-try{const language=document.getElementById("lang").value;const r=await fetch("/api/explain",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:t.value,language})});
+async function explainPapers(){const button=document.getElementById("go"),menu=document.getElementById('lang');if(button.disabled)return;const sampleId=Object.keys(S).find(k=>S[k]===t.value);out.innerHTML='';hideFeedback();if(!sampleId){st.textContent='Choose a built-in synthetic example. Custom patient text is disabled.';return}button.disabled=true;menu.disabled=true;st.textContent="Loading synthetic example...";
+try{const language=menu.value;const r=await fetch("/api/explain",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sampleId,language}),cache:'no-store'});
 const d=await r.json();st.textContent="";if(d.error){out.innerHTML="<p class=red>"+e(d.error)+"</p>";return}
 if(!r.ok||!d.result){out.innerHTML="<p class=red>Could not load a verified explanation. Please try again.</p>";return}const x=d.result;
 let h="<section><h2>In short</h2><p>"+e(x.summary)+"</p></section><section><h2>What to do at home</h2><ol>"+arr(x.steps).map(v=>"<li>"+e(v)+"</li>").join("")+"</ol></section>";
@@ -62,8 +63,9 @@ h+="<section><h2>Medicine schedule</h2>"+medicines(x.medications)+"</section>";
 const rf=x.red_flags||{};h+="<section class=red><h2>Warning signs</h2>"+warnings(rf)+"</section>";
 h+="<section><h2>Questions to ask at your follow-up</h2>"+li(x.questions)+"</section>";
 if(x.translation&&labels[language]){const p=x.translation,L=language,T=labels[L];h+="<section lang="+L+(L==="ar"?" dir=rtl":"")+"><h2>"+T[0]+"</h2><p>"+e(p.summary)+"</p><h3>"+T[1]+"</h3>"+li(p.steps)+"<h3>"+T[2]+"</h3>"+medicines(p.medications,L)+"<h3>"+T[3]+"</h3>"+warnings(p.red_flags||{},L)+"<h3>"+T[4]+"</h3>"+li(p.questions)+"</section>"}
-{const f=document.getElementById("fb"),fs=document.getElementById("fbs");if(f&&f.style)f.style.display="block";if(fs&&"textContent" in fs)fs.textContent="";}
-out.innerHTML=h+"<p><small>"+(d.prepared?"Prepared synthetic example (edited for demonstration). Live model: ":"Model: ")+e(d.model)+" via Nebius Token Factory. Not medical advice.</small></p>"}catch{st.textContent="Unable to reach the explanation service. Please try again."}finally{button.disabled=false}}
+displayedSample={sampleId,language};document.getElementById('fb').style.display='block';
+out.innerHTML=h+"<p><small>Prepared synthetic example, edited for demonstration. Not live inference. Based on NVIDIA Nemotron output with editorial corrections and translations. Not medical advice.</small></p>"}catch{st.textContent="Unable to reach the explanation service. Please try again."}finally{button.disabled=false;menu.disabled=false}}
 async function sendfb(){const status=document.getElementById("fbs"),button=document.getElementById("send-feedback");const rating=document.querySelector("input[name=r]:checked");if(!rating){status.textContent="Please pick a rating.";return}if(button.disabled)return;button.disabled=true;
-try{const sections=[...document.querySelectorAll("input[name=sec]:checked")].map(x=>x.value);const response=await fetch("/api/feedback",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({rating:rating.value,sections,comment:document.getElementById("fc").value})});const d=await response.json();status.textContent=response.ok&&d.ok?"Thank you! Your feedback was saved.":(d.error||"Could not save feedback. Please try again.")}catch{status.textContent="Could not save feedback. Please try again."}finally{button.disabled=false}}
+try{if(!displayedSample){status.textContent='Explain a synthetic example before rating it.';return}const sections=[...document.querySelectorAll("input[name=sec]:checked")].map(x=>x.value);const response=await fetch("/api/feedback",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({rating:rating.value,sections,...displayedSample}),cache:'no-store'});const d=await response.json();status.textContent=response.ok&&d.ok?"Thank you! Your structured rating was saved for 30 days.":(d.error||"Could not save feedback. Please try again.")}catch{status.textContent="Could not save feedback. Please try again."}finally{button.disabled=false}}
+document.getElementById('sample1').addEventListener('click',()=>s(1));document.getElementById('sample2').addEventListener('click',()=>s(2));document.getElementById('lang').addEventListener('change',changeLanguage);document.getElementById('go').addEventListener('click',explainPapers);document.getElementById('send-feedback').addEventListener('click',sendfb);
 </script></body></html>`;
