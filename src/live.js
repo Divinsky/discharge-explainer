@@ -84,13 +84,13 @@ export async function explain(env, text, language) {
 
 // Tavily: runtime web search for trusted patient-education links (MedlinePlus) about the diagnosis.
 export async function tavilyResources(env, summary) {
-  if (!env.TAVILY_API_KEY || !summary) return [];
+  if (!env.TAVILY_API_KEY) { env.__tv='nokey'; return []; } if (!summary) return [];
   try {
     const r = await fetch('https://api.tavily.com/search', { method: 'POST', signal: AbortSignal.timeout(12000),
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.TAVILY_API_KEY}` },
       body: JSON.stringify({ query: summary.split('.')[0].slice(0, 120) + ' patient instructions', max_results: 3, include_domains: ['medlineplus.gov'] }) });
-    if (!r.ok) return [];
-    const d = await r.json();
+    if (!r.ok) { env.__tv='http'+r.status; return []; }
+    const d = await r.json(); env.__tv='n'+(d.results||[]).length;
     return (d.results || []).filter(x => /^https:\/\/medlineplus\.gov\//.test(x.url)).map(x => ({ title: String(x.title).slice(0, 120), url: x.url }));
-  } catch { return []; }
+  } catch (e) { env.__tv='err:'+String(e).slice(0,80); return []; }
 }

@@ -42,7 +42,7 @@ async function route(req, env) {
     // Live NVIDIA Nemotron call via Nebius Token Factory; saved sample output is only a fallback if the model is unavailable.
     let out = await explain(env, text, language);
     if (out.error) out = preparedSample(text, language) || out;
-    if (out.result) out.resources = await tavilyResources(env, out.result.summary);
+    if (out.result) { out.resources = await tavilyResources(env, out.result.summary); out.tavily = env.__tv || 'ok'; }
     return json(out, out.error ? 502 : 200);
   }
   if (url.pathname === '/api/feedback' && req.method === 'POST') {
