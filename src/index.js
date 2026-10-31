@@ -2,7 +2,7 @@ import { HTML, SAMPLE1, SAMPLE2 } from './page.js';
 import { preparedSample } from './demo.js';
 import { saveFeedback, loadAll, boardSummary, LEADERSHIP_HTML } from './feedback.js';
 import { staffIdentity } from './auth.js';
-import { explain } from './live.js';
+import { explain, tavilyResources } from './live.js';
 import { readSmallJSON, sameOriginWrite, secureResponse } from './privacy.js';
 
 const LANGUAGES = new Set(['', 'es', 'zh', 'ar', 'ru']);
@@ -12,6 +12,10 @@ const json = (body, status = 200) => Response.json(body, { status });
 
 async function route(req, env) {
   const url = new URL(req.url);
+  // DEMO MODE: public copy of the leadership page for judges (production keeps it behind staff sign-in).
+  if (url.pathname === '/board' && req.method === 'GET') return new Response(LEADERSHIP_HTML.replaceAll("'/api/feedback/summary'","'/api/board/data'").replaceAll("'/api/leadership/summary'","'/api/board/summary'"), { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+  if (url.pathname === '/api/board/data' && req.method === 'GET') return json(await loadAll(env));
+  if (url.pathname === '/api/board/summary' && req.method === 'POST') { const out = await boardSummary(env); return json(out, out.error ? 502 : 200); }
   if (PRIVATE_PATHS.has(url.pathname)) {
     // DEMO MODE: staff sign-in is bypassed so judges can view this page. In production, staffIdentity(req, env) gates it.
     const identity = { subject: 'demo-judge' };
@@ -38,6 +42,7 @@ async function route(req, env) {
     // Live NVIDIA Nemotron call via Nebius Token Factory; saved sample output is only a fallback if the model is unavailable.
     let out = await explain(env, text, language);
     if (out.error) out = preparedSample(text, language) || out;
+    if (out.result) out.resources = await tavilyResources(env, out.result.summary);
     return json(out, out.error ? 502 : 200);
   }
   if (url.pathname === '/api/feedback' && req.method === 'POST') {
