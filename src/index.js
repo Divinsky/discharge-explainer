@@ -2,7 +2,7 @@ import { HTML, SAMPLE1, SAMPLE2 } from './page.js';
 import { preparedSample } from './demo.js';
 import { saveFeedback, loadAll, boardSummary, LEADERSHIP_HTML } from './feedback.js';
 import { staffIdentity } from './auth.js';
-import { explain, tavilyResources } from './live.js';
+import { explain, tavilyResources, plainify } from './live.js';
 import { readSmallJSON, sameOriginWrite, secureResponse } from './privacy.js';
 
 const LANGUAGES = new Set(['', 'es', 'zh', 'ar', 'ru']);
@@ -42,7 +42,7 @@ async function route(req, env) {
     // Live NVIDIA Nemotron call via Nebius Token Factory; saved sample output is only a fallback if the model is unavailable.
     let out = await explain(env, text, language);
     if (out.error) out = preparedSample(text, language) || out;
-    if (out.result) { out.resources = await tavilyResources(env, out.result.summary); out.tavily = env.__tv || 'ok'; }
+    if (out.result) { out.result = plainify(out.result); out.resources = await tavilyResources(env, out.result.summary); out.tavily = env.__tv || 'ok'; }
     return json(out, out.error ? 502 : 200);
   }
   if (url.pathname === '/api/feedback' && req.method === 'POST') {
