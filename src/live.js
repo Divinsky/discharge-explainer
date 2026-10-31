@@ -6,7 +6,8 @@ Use call_911 ONLY for symptoms the papers explicitly say require emergency help 
 Summary and steps must also contain only source-supported facts. Questions may ask for clarification but must not imply a new diagnosis or recommendation.
 If a translation is requested, translate ALL sections into that language, including every medication and both warning categories, preserving the same instructions and numbers. translation.language MUST be exactly the requested code (es, zh, ar, or ru), never a language name. Translate arrays item-for-item, with exactly the same number and order of steps, medications, questions, and warnings as in English. Otherwise set translation to null.
 Return ONLY valid JSON with this shape:
-{"summary":"2-3 sentence plain summary",
+{"condition":"short general name of the main condition or procedure, e.g. heart failure; no names, dates, or personal details",
+ "summary":"2-3 sentence plain summary",
  "steps":["short plain-language step", ...],
  "medications":[{"name":"","dose":"","when":"","purpose":"","notes":""}],
  "red_flags":{"call_911":["..."],"call_doctor":["..."]},

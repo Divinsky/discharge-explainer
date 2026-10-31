@@ -12,7 +12,7 @@ export async function saveFeedback(env, body) {
     return { error: 'Free-text comments and additional fields are disabled. Submit only a rating and listed sections for a synthetic sample.' };
   }
   if (!['number', 'string'].includes(typeof body.rating) || !/^[1-5]$/.test(String(body.rating))) return { error: 'Please choose a rating from 1 to 5.' };
-  if (!['1', '2'].includes(body.sampleId) || !LANGUAGES.includes(body.language ?? '')) return { error: 'Choose a built-in synthetic sample and supported language.' };
+  if (!['1', '2', 'custom'].includes(body.sampleId) || !LANGUAGES.includes(body.language ?? '')) return { error: 'Choose a built-in synthetic sample and supported language.' };
   if (!Array.isArray(body.sections) || body.sections.length > 6 || body.sections.some(s => !SECTIONS.includes(s))) return { error: 'Choose only the listed feedback sections.' };
   const metadata = { v: 2, r: Number(body.rating), s: [...new Set(body.sections)], sample: body.sampleId, language: body.language ?? '', t: Date.now() };
   await env.FEEDBACK.put(`feedback:v2:${crypto.randomUUID()}`, '1', { metadata, expirationTtl: RETENTION_SECONDS });

@@ -33,16 +33,17 @@ async function route(req, env) {
   if (req.method === 'POST' && !sameOriginWrite(req)) return json({ error: 'Cross-site requests are not allowed.' }, 403);
   if (url.pathname === '/api/explain' && req.method === 'POST') {
     const body = await readSmallJSON(req);
-    if (Object.keys(body).some(k => !['sampleId', 'text', 'language', 'spanish'].includes(k))) return json({ error: 'Only a built-in synthetic sample and language are accepted.' }, 400);
+    if (Object.keys(body).some(k => !['sampleId', 'text', 'language', 'spanish', 'attest'].includes(k))) return json({ error: 'Only a built-in synthetic sample and language are accepted.' }, 400);
     const language = body.language ?? (body.spanish === true ? 'es' : '');
     if (!LANGUAGES.has(language) || (body.spanish !== undefined && typeof body.spanish !== 'boolean')) return json({ error: 'Choose a supported language.' }, 400);
     if (body.sampleId !== undefined && !['1', '2'].includes(body.sampleId)) return json({ error: 'Choose one of the two built-in synthetic samples.' }, 400);
     const text = body.sampleId ? SAMPLE_TEXT[body.sampleId] : body.text;
     if (typeof text !== 'string' || !text.trim() || text.length > 20000) return json({ error: 'Paste discharge text (synthetic only) or choose a built-in sample.' }, 400);
+    if (!body.sampleId && body.attest !== true) return json({ error: 'Please confirm the text is synthetic or de-identified before continuing.' }, 400);
     // Live NVIDIA Nemotron call via Nebius Token Factory; saved sample output is only a fallback if the model is unavailable.
     let out = await explain(env, text, language);
     if (out.error) out = preparedSample(text, language) || out;
-    if (out.result) { out.result = plainify(out.result); out.resources = await tavilyResources(env, out.result.summary); out.tavily = env.__tv || 'ok'; }
+    if (out.result) { out.result = plainify(out.result); const cond = typeof out.result.condition === 'string' ? out.result.condition.slice(0, 60) : ''; out.resources = await tavilyResources(env, cond || (body.sampleId ? out.result.summary : '')); out.tavily = env.__tv || 'ok'; }
     return json(out, out.error ? 502 : 200);
   }
   if (url.pathname === '/api/feedback' && req.method === 'POST') {
